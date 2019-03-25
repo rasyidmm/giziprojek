@@ -33,6 +33,11 @@ public class Aktor extends Additional implements Serializable {
     private String namaAkhir;
     private String alamat;
     private String noHp;
+    private String nomerSRT;
+    private String pendidikanTerahir;
+    private String jenjangKarir;
+    private String nama_foto;
+
     @OneToOne
     private Login login;
 
@@ -175,5 +180,37 @@ public class Aktor extends Additional implements Serializable {
 
     public void setAktorPilihans(List<AktorPilihan> aktorPilihans) {
         this.aktorPilihans = aktorPilihans;
+    }
+
+    public String getPendidikanTerahir() {
+        return pendidikanTerahir;
+    }
+
+    public void setPendidikanTerahir(String pendidikanTerahir) {
+        this.pendidikanTerahir = pendidikanTerahir;
+    }
+
+    public String getJenjangKarir() {
+        return jenjangKarir;
+    }
+
+    public void setJenjangKarir(String jenjangKarir) {
+        this.jenjangKarir = jenjangKarir;
+    }
+
+    public String getNomerSRT() {
+        return nomerSRT;
+    }
+
+    public void setNomerSRT(String nomerSRT) {
+        this.nomerSRT = nomerSRT;
+    }
+
+    public String getNama_foto() {
+        return nama_foto;
+    }
+
+    public void setNama_foto(String nama_foto) {
+        this.nama_foto = nama_foto;
     }
 }
