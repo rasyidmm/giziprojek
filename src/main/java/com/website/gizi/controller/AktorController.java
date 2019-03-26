@@ -75,4 +75,17 @@ public class AktorController {
         aktorServices.SaveOrUpdateAktor(a,l);
         return "redirect:member";
     }
+    @RequestMapping(value = "/memberdetail")
+    public ModelAndView halamanMemberDetail(@RequestParam("id")long id){
+        return new ModelAndView("member/halamanMemberDetail","memberdetail",aktorServices.getAktorById(id));
+    }
+    @RequestMapping(value ="/memberupdate",method = RequestMethod.GET)
+    public ModelAndView halamanMemberUpdate(@RequestParam("id")long id){
+        return new ModelAndView("member/halamanMemberUpdate","memberupdate",aktorServices.getAktorById(id));
+    }
+    @RequestMapping(value = "/memberupdate",method =  RequestMethod.POST)
+    public String memberupdate(@ModelAttribute("Aktor")Aktor a,@ModelAttribute("Login")Login l){
+        aktorServices.SaveOrUpdateAktor(a,l);
+        return "redirect:member";
+    }
 }
