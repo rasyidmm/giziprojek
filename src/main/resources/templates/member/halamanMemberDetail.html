@@ -30,22 +30,18 @@
                             <div class="box-body box-profile">
                                 <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
 
-                                <h3 class="profile-username text-center">Nina Mcintire</h3>
+                                <h3 class="profile-username text-center" th:text="${memberdetail.namaAwal}">Nina Mcintire</h3>
 
-                                <p class="text-muted text-center">Software Engineer</p>
+                                <p class="text-muted text-center"th:text="${memberdetail.nomerSRT}"></p>
 
                                 <ul class="list-group list-group-unbordered">
                                     <li class="list-group-item">
-                                        <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
-                                        <p class="text-muted">
-                                            B.S. in Computer Science from the University of Tennessee at Knoxville
-                                        </p>
+                                        <strong><i class="fa fa-book margin-r-5"></i>Jenjang Karir</strong>
+                                        <p class="text-muted" th:text="${memberdetail.jenjangKarir}"></p>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Following</b> <a class="pull-right">543</a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Friends</b> <a class="pull-right">13,287</a>
+                                        <strong><i class="fa fa-book margin-r-5"></i>Pendidikan Terahir</strong>
+                                        <p class="text-muted" th:text="${memberdetail.pendidikanTerahir}"></p>
                                     </li>
                                 </ul>
                             </div>
@@ -60,17 +56,20 @@
                             <div class="box-body box-profile">
                                 <ul class="list-group list-group-unbordered">
                                     <li class="list-group-item">
-                                        <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
-                                        <p class="text-muted">
-                                            B.S. in Computer Science from the University of Tennessee at Knoxville
-                                        </p>
+                                        <strong><i class="fa fa-book margin-r-5"></i> No Handphone</strong>
+                                        <p class="text-muted" th:text="${memberdetail.noHp}"></p>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Following</b> <a class="pull-right">543</a>
+                                        <strong><i class="fa fa-book margin-r-5"></i> Alamat</strong>
+                                        <p class="text-muted" th:text="${memberdetail.alamat}"></p>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Friends</b> <a class="pull-right">13,287</a>
+                                        <div class=" text-center">
+                                            <a th:href="@{/memberupdate(id=${memberdetail.id})}"type="button" class="butongizi">Ubah Profil</a>
+                                            <a th:href="@{/memberupdatelogin(id=${memberdetail.login.id})}"type="button" class="butongizi">Ubah Password</a>
+                                        </div>
                                     </li>
+
                                 </ul>
                             </div>
                             <!-- /.box-body -->
@@ -84,7 +83,6 @@
                 <div class="box-header text-center">
                     <h3 class="box-title">Daftar Member</h3>
                 </div>
-                <div></div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <table id="example1" class="table table-bordered table-striped">
@@ -519,6 +517,7 @@
                 </div>
                 <!-- /.box-body -->
             </div>
+        </section>
     </div>
 </div>
 <script src="/bower_components/jquery/dist/jquery.min.js"></script>

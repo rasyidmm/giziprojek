@@ -44,6 +44,11 @@ public class AktorServices implements AktorDao {
     }
 
     @Override
+    public void UpdateAktorMandiri(Aktor a) {
+        aktorRepository.save(a);
+    }
+
+    @Override
     public void deleteAktorById(long id) {
         aktorRepository.deleteById(id);
     }

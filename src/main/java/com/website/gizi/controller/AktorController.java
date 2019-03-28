@@ -84,8 +84,27 @@ public class AktorController {
         return new ModelAndView("member/halamanMemberUpdate","memberupdate",aktorServices.getAktorById(id));
     }
     @RequestMapping(value = "/memberupdate",method =  RequestMethod.POST)
-    public String memberupdate(@ModelAttribute("Aktor")Aktor a,@ModelAttribute("Login")Login l){
-        aktorServices.SaveOrUpdateAktor(a,l);
+    public String memberupdate(@ModelAttribute("Aktor")Aktor a,@ModelAttribute("Login")Login l,@RequestParam("id")long id,@RequestParam("idlg")long idlg){
+        a.setId(id);
+        a.setLogin(loginServices.getLoginById(idlg));
+        aktorServices.UpdateAktorMandiri(a);
         return "redirect:member";
     }
+    @RequestMapping(value = "/memberdelete")
+    public String memberDelete(@RequestParam("id")long id,@RequestParam("idlg")long idlg){
+        try {
+            aktorServices.deleteAktorById(id);
+            loginServices.deleteLoginById(idlg);
+        }catch (Exception e){
+            System.out.println("Erornya karna : " +e);
+        }
+        return "redirect:member";
+    }
+
+    @RequestMapping(value = "/memberupdatelogin")
+    public ModelAndView memberupdatelogin(@RequestParam("id")long id){
+        return new ModelAndView("member/halamanMemberChangerPassword","memberupdatelogin",loginServices.getLoginById(id));
+    }
+
+
 }
