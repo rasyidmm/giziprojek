@@ -49,5 +49,8 @@ public class LoginServices implements LoginDao {
     public Login findSummember (@Param("roleName") String roleName){
         return  loginRepository.findSummember(roleName);
     }
+    public Login findPasswordByid(long id){
+        return loginRepository.findPasswordByid(id);
+    }
 
 }

@@ -12,5 +12,6 @@ public interface LoginRepository extends JpaRepository<Login,Long> {
     public Login findByUsernameAktor(@Param("usernameAktor") String usernameAktor);
     @Query(value = "select sum(a.aktor.id) from Login a where a.role.namaRole =:roleName")
     public Login findSummember(@Param("roleName") String roleName);
-
+    @Query(value = "select a.passwordAktor from Login a where a.id =:id")
+    public Login findPasswordByid(@Param("id")long id);
 }

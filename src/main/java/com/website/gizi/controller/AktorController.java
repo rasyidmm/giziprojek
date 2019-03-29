@@ -2,21 +2,13 @@ package com.website.gizi.controller;
 
 import com.website.gizi.model.Aktor;
 import com.website.gizi.model.Login;
-import com.website.gizi.request.TambahMemberRequest;
-import com.website.gizi.response.ApiResponse;
 import com.website.gizi.services.AktorServices;
 import com.website.gizi.services.LoginServices;
 import com.website.gizi.services.RoleServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
-import java.util.List;
 
 @Controller
 public class AktorController {
@@ -103,8 +95,28 @@ public class AktorController {
 
     @RequestMapping(value = "/memberupdatelogin")
     public ModelAndView memberupdatelogin(@RequestParam("id")long id){
-        return new ModelAndView("member/halamanMemberChangerPassword","memberupdatelogin",loginServices.getLoginById(id));
+        return new ModelAndView("member/halamanMemberPasswordChecker","memberupdatelogin",loginServices.getLoginById(id));
     }
 
-
+    @RequestMapping(value = "/cekpassword")
+    public ModelAndView cekpassword(@RequestParam("id")long id,@RequestParam("password")String password){
+        Login login = loginServices.getLoginById(id);
+        System.out.println(login.getPasswordAktor());
+        System.out.println(password);
+        if (password.toString() == login.getPasswordAktor().toString()) {
+            return new ModelAndView("member/halamanMemberDetail","memberdetail",aktorServices.getAktorById(id));
+        }else {
+            return new ModelAndView("member/halamanMemberPassword","passwordsiapupdate",loginServices.getLoginById(id));
+        }
+    }
+    @RequestMapping(value = "/gantipasswordmember")
+    public String gantipassword(@RequestParam("id")long id,@RequestParam("password")String password){
+        Login login = loginServices.getLoginById(id);
+        login.setPasswordAktor(password);
+        login.setUsernameAktor(login.getUsernameAktor());
+        login.setRole(login.getRole());
+        loginServices.SaveOrUpdateLogin(login);
+        return "redirect:member";
+    }
 }
+
