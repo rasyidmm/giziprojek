@@ -101,12 +101,15 @@ public class AktorController {
     @RequestMapping(value = "/cekpassword")
     public ModelAndView cekpassword(@RequestParam("id")long id,@RequestParam("password")String password){
         Login login = loginServices.getLoginById(id);
+        String getpasswrddb = login.getPasswordAktor();
         System.out.println(login.getPasswordAktor());
         System.out.println(password);
-        if (password.toString() == login.getPasswordAktor().toString()) {
-            return new ModelAndView("member/halamanMemberDetail","memberdetail",aktorServices.getAktorById(id));
-        }else {
+        if (password.toUpperCase().toString() == getpasswrddb.toUpperCase().toString()) {
+//            return new ModelAndView("member/halamanMemberDetail","memberdetail",aktorServices.getAktorById(id));
             return new ModelAndView("member/halamanMemberPassword","passwordsiapupdate",loginServices.getLoginById(id));
+        }else {
+//            return new ModelAndView("member/halamanMemberPassword","passwordsiapupdate",loginServices.getLoginById(id));
+            return new ModelAndView("member/halamanMemberDetail","memberdetail",aktorServices.getAktorById(id));
         }
     }
     @RequestMapping(value = "/gantipasswordmember")

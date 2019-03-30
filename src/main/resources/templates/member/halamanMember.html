@@ -49,7 +49,7 @@
                         <tbody>
                         <tr  th:each="anggota, iterStat:${memberlist}">
                             <td th:text="${iterStat.count}"></td>
-                            <td th:text="${anggota.namaAwal.concat(anggota.namaAkhir)}"></td>
+                            <td th:text="${anggota.namaAwal}"></td>
                             <td th:text="${anggota.nomerSRT}"></td>
                             <td th:text="${anggota.jenjangKarir}"></td>
                             <td>
