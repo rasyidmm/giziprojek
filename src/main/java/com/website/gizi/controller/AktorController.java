@@ -105,11 +105,11 @@ public class AktorController {
         System.out.println(login.getPasswordAktor());
         System.out.println(password);
         if (password.toUpperCase().toString() == getpasswrddb.toUpperCase().toString()) {
-//            return new ModelAndView("member/halamanMemberDetail","memberdetail",aktorServices.getAktorById(id));
-            return new ModelAndView("member/halamanMemberPassword","passwordsiapupdate",loginServices.getLoginById(id));
-        }else {
-//            return new ModelAndView("member/halamanMemberPassword","passwordsiapupdate",loginServices.getLoginById(id));
             return new ModelAndView("member/halamanMemberDetail","memberdetail",aktorServices.getAktorById(id));
+//            return new ModelAndView("member/halamanMemberPassword","passwordsiapupdate",loginServices.getLoginById(id));
+        }else {
+            return new ModelAndView("member/halamanMemberPassword","passwordsiapupdate",loginServices.getLoginById(id));
+//            return new ModelAndView("member/halamanMemberDetail","memberdetail",aktorServices.getAktorById(id));
         }
     }
     @RequestMapping(value = "/gantipasswordmember")

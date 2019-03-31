@@ -30,6 +30,7 @@ public class Kegiatan extends Additional implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String namaKegiatan;
+    private String tanggalKegiatan;
     @ManyToOne
     private Aktor aktor;
 
@@ -129,5 +130,14 @@ public class Kegiatan extends Additional implements Serializable {
 
     public void setTargetPenilaian(TargetPenilaian targetPenilaian) {
         this.targetPenilaian = targetPenilaian;
+    }
+
+
+    public String getTanggalKegiatan() {
+        return tanggalKegiatan;
+    }
+
+    public void setTanggalKegiatan(String tanggalKegiatan) {
+        this.tanggalKegiatan = tanggalKegiatan;
     }
 }
