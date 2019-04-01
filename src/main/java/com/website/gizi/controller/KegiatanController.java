@@ -40,4 +40,14 @@ public class KegiatanController {
         kegiatanServices.SaveOrUpdateKegiatan(kegiatan);
         return "redirect:kegiatan";
     }
+
+    @RequestMapping(value = "/kegiatandetail",method = RequestMethod.GET)
+    public ModelAndView kegiatandetail(@RequestParam("id")long id){
+        return new ModelAndView("kegiatan/halamanKegiatanDetail","kegiatandetail",kegiatanServices.getKegiatanById(id));
+    }
+    @RequestMapping(value = "/kegiatanhapus")
+    public String kegeiatanHapus(@RequestParam("id")long id){
+        kegiatanServices.deleteKegiatanById(id);
+        return "redirect:kegiatan";
+    }
 }

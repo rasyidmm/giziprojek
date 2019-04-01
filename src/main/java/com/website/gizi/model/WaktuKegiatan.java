@@ -86,7 +86,7 @@ public class WaktuKegiatan implements Serializable {
         return waktuRekapitulasi;
     }
 
-    public void setWaktuRekapitulasi(Date waktuRekapitulasi) {
+    public void setWaktuRekapitulasi(String waktuRekapitulasi) {
         this.waktuRekapitulasi = waktuRekapitulasi;
     }
 }

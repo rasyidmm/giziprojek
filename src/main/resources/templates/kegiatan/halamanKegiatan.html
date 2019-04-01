@@ -29,9 +29,9 @@
 
             <div class="box">
                 <div class="box-header text-center">
-                    <h3 class="box-title">Daftar Member</h3>
+                    <h3 class="box-title">Daftar Kegiatan</h3>
                     <div class=" text-right">
-                        <a th:href="@{/membertambah}"type="button" class="butongizi">Tambah Member</a>
+                        <a th:href="@{/tambahkegiatan}"type="button" class="butongizi">Tambah Kegiatan</a>
                     </div>
                 </div>
                 <!-- /.box-header -->
@@ -60,9 +60,9 @@
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a th:href="@{memberdetail(id=${kegiatan.id})}">Detail</a></li>
+                                        <li><a th:href="@{kegiatandetail(id=${kegiatan.id})}">Detail</a></li>
                                         <li><a th:href="@{updatekegiatan(id=${kegiatan.id})}">Ubah</a></li>
-                                        <li><a th:href="@{memberdelete(id=${kegiatan.id})}">Hapus</a></li>
+                                        <li><a th:href="@{kegiatanhapus(id=${kegiatan.id})}">Hapus</a></li>
                                     </ul>
                                 </div>
                             </td>
