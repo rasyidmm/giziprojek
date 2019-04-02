@@ -23,9 +23,7 @@ public class AktorPilihan implements Serializable {
     @ManyToOne
     private
     Aktor aktor;
-    @ManyToOne
-    private
-    WaktuKegiatan waktuKegiatan;
+
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -80,11 +78,5 @@ public class AktorPilihan implements Serializable {
         this.aktor = aktor;
     }
 
-    public WaktuKegiatan getWaktuKegiatan() {
-        return waktuKegiatan;
-    }
 
-    public void setWaktuKegiatan(WaktuKegiatan waktuKegiatan) {
-        this.waktuKegiatan = waktuKegiatan;
-    }
 }

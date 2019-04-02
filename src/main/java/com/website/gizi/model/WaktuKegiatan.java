@@ -13,14 +13,10 @@ import javax.persistence.*;
  */
 @Entity
 public class WaktuKegiatan implements Serializable {
+
     @JsonIgnore
     @OneToMany(mappedBy = "waktuKegiatan")
-    private
-    List<AktorPilihan> aktorPilihans;
-    @JsonIgnore
-    @OneToMany(mappedBy = "waktuKegiatan")
-    private
-    List<KegiatanPilihan> kegiatanPilihans;
+    private List<Rekapitulasi> rekapitulasis;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -66,27 +62,20 @@ public class WaktuKegiatan implements Serializable {
         return "model.WaktuKegiatan[ id=" + getId() + " ]";
     }
 
-    public List<AktorPilihan> getAktorPilihans() {
-        return aktorPilihans;
-    }
-
-    public void setAktorPilihans(List<AktorPilihan> aktorPilihans) {
-        this.aktorPilihans = aktorPilihans;
-    }
-
-    public List<KegiatanPilihan> getKegiatanPilihans() {
-        return kegiatanPilihans;
-    }
-
-    public void setKegiatanPilihans(List<KegiatanPilihan> kegiatanPilihans) {
-        this.kegiatanPilihans = kegiatanPilihans;
-    }
 
     public Date getWaktuRekapitulasi() {
         return waktuRekapitulasi;
     }
 
-    public void setWaktuRekapitulasi(String waktuRekapitulasi) {
+    public void setWaktuRekapitulasi(Date waktuRekapitulasi) {
         this.waktuRekapitulasi = waktuRekapitulasi;
+    }
+
+    public List<Rekapitulasi> getRekapitulasis() {
+        return rekapitulasis;
+    }
+
+    public void setRekapitulasis(List<Rekapitulasi> rekapitulasis) {
+        this.rekapitulasis = rekapitulasis;
     }
 }

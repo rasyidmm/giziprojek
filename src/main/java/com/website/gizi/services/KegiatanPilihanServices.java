@@ -1,6 +1,7 @@
 package com.website.gizi.services;
 
 import com.website.gizi.dao.KegiatanPilihanDao;
+import com.website.gizi.model.Kegiatan;
 import com.website.gizi.model.KegiatanPilihan;
 import com.website.gizi.repository.KegiatanPilihanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +41,9 @@ public class KegiatanPilihanServices implements KegiatanPilihanDao {
     public void deleteKegiatanPilihan(KegiatanPilihan a) {
         kegiatanPilihanRepository.delete(a);
     }
+
+//    public List<Kegiatan>findKegiatanByNamaKegRekAndWaktuKegiatan (long idwaktuKegiatan,String nama_keg_rek){
+//            return kegiatanPilihanRepository.findKegiatanByNamaKegRekAndWaktuKegiatan(idwaktuKegiatan,nama_keg_rek);
+//    }
+
 }

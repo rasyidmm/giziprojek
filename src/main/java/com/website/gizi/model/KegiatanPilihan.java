@@ -29,9 +29,6 @@ public class KegiatanPilihan extends Additional implements Serializable {
     @JoinTable
     private Set<Kegiatan> kegiatan;
 
-    @ManyToOne
-    private
-    WaktuKegiatan waktuKegiatan;
 
     public Long getId() {
         return id;
@@ -91,8 +88,6 @@ public class KegiatanPilihan extends Additional implements Serializable {
      * @return the rekapitulasis
      */
 
-
-
     /**
      * @param aSerialVersionUID the serialVersionUID to set
      */
@@ -108,11 +103,5 @@ public class KegiatanPilihan extends Additional implements Serializable {
         this.rekapitulasi = rekapitulasi;
     }
 
-    public WaktuKegiatan getWaktuKegiatan() {
-        return waktuKegiatan;
-    }
 
-    public void setWaktuKegiatan(WaktuKegiatan waktuKegiatan) {
-        this.waktuKegiatan = waktuKegiatan;
-    }
 }

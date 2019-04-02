@@ -28,6 +28,9 @@ public class Rekapitulasi extends Additional implements Serializable {
     @OneToOne
     private
     AktorPilihan aktorPilihan;
+    @ManyToOne
+    private
+    WaktuKegiatan waktuKegiatan;
     public Long getId() {
         return id;
     }
@@ -123,5 +126,13 @@ public class Rekapitulasi extends Additional implements Serializable {
 
     public void setAktorPilihan(AktorPilihan aktorPilihan) {
         this.aktorPilihan = aktorPilihan;
+    }
+
+    public WaktuKegiatan getWaktuKegiatan() {
+        return waktuKegiatan;
+    }
+
+    public void setWaktuKegiatan(WaktuKegiatan waktuKegiatan) {
+        this.waktuKegiatan = waktuKegiatan;
     }
 }
