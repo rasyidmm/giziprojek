@@ -15,19 +15,25 @@ public class Rekapitulasi extends Additional implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "rekapitulasi")
     private List<Penilaian>penilaians;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "rekapitulasi")
+    private AktorPilihan aktorPilihan;
+
     @JsonIgnore
     @OneToOne(mappedBy = "rekapitulasi")
     private TargetPenilaian targetPenilaian;
+
     @JsonIgnore
+    @OneToOne(mappedBy = "rekapitulasi")
+    private KegiatanPilihan kegiatanPilihan;
+
     private static long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    private KegiatanPilihan kegiatanPilihan;
-    @OneToOne
-    private
-    AktorPilihan aktorPilihan;
+
+
     @ManyToOne
     private
     WaktuKegiatan waktuKegiatan;

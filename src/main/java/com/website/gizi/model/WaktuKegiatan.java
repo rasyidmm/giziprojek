@@ -21,9 +21,8 @@ public class WaktuKegiatan implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Temporal(javax.persistence.TemporalType.DATE)
     private
-    Date waktuRekapitulasi;
+    String waktuRekapitulasi;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -63,13 +62,6 @@ public class WaktuKegiatan implements Serializable {
     }
 
 
-    public Date getWaktuRekapitulasi() {
-        return waktuRekapitulasi;
-    }
-
-    public void setWaktuRekapitulasi(Date waktuRekapitulasi) {
-        this.waktuRekapitulasi = waktuRekapitulasi;
-    }
 
     public List<Rekapitulasi> getRekapitulasis() {
         return rekapitulasis;
@@ -77,5 +69,13 @@ public class WaktuKegiatan implements Serializable {
 
     public void setRekapitulasis(List<Rekapitulasi> rekapitulasis) {
         this.rekapitulasis = rekapitulasis;
+    }
+
+    public String getWaktuRekapitulasi() {
+        return waktuRekapitulasi;
+    }
+
+    public void setWaktuRekapitulasi(String waktuRekapitulasi) {
+        this.waktuRekapitulasi = waktuRekapitulasi;
     }
 }

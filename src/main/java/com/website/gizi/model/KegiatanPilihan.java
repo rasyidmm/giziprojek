@@ -15,15 +15,16 @@ import javax.persistence.*;
  */
 @Entity
 public class KegiatanPilihan extends Additional implements Serializable {
-    @JsonIgnore
-    @OneToOne(mappedBy = "kegiatanPilihan")
-    private Rekapitulasi rekapitulasi;
+
 
     private static long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String namaKegRek;
+    @OneToOne
+    private Rekapitulasi rekapitulasi;
+
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable
@@ -104,4 +105,11 @@ public class KegiatanPilihan extends Additional implements Serializable {
     }
 
 
+    public Set<Kegiatan> getKegiatan() {
+        return kegiatan;
+    }
+
+    public void setKegiatan(Set<Kegiatan> kegiatan) {
+        this.kegiatan = kegiatan;
+    }
 }

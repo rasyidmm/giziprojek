@@ -11,10 +11,6 @@ import javax.persistence.*;
  */
 @Entity
 public class AktorPilihan implements Serializable {
-    @JsonIgnore
-    @OneToOne(mappedBy = "aktorPilihan")
-    private
-    Rekapitulasi rekapitulasi;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -23,6 +19,9 @@ public class AktorPilihan implements Serializable {
     @ManyToOne
     private
     Aktor aktor;
+    @OneToOne
+    private
+    Rekapitulasi rekapitulasi;
 
 
     public static long getSerialVersionUID() {
@@ -62,14 +61,6 @@ public class AktorPilihan implements Serializable {
         return "model.AktorPilihan[ id=" + getId() + " ]";
     }
 
-    public Rekapitulasi getRekapitulasi() {
-        return rekapitulasi;
-    }
-
-    public void setRekapitulasi(Rekapitulasi rekapitulasi) {
-        this.rekapitulasi = rekapitulasi;
-    }
-
     public Aktor getAktor() {
         return aktor;
     }
@@ -79,4 +70,11 @@ public class AktorPilihan implements Serializable {
     }
 
 
+    public Rekapitulasi getRekapitulasi() {
+        return rekapitulasi;
+    }
+
+    public void setRekapitulasi(Rekapitulasi rekapitulasi) {
+        this.rekapitulasi = rekapitulasi;
+    }
 }
