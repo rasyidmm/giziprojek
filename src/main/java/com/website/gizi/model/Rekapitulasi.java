@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 
 /**
@@ -17,22 +18,21 @@ public class Rekapitulasi extends Additional implements Serializable {
     private List<Penilaian>penilaians;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "rekapitulasi")
-    private AktorPilihan aktorPilihan;
+    @OneToMany(mappedBy = "rekapitulasi")
+    private List<KegiatanRekapitulasi>kegiatanRekapitulasis;
 
     @JsonIgnore
     @OneToOne(mappedBy = "rekapitulasi")
     private TargetPenilaian targetPenilaian;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "rekapitulasi")
-    private KegiatanPilihan kegiatanPilihan;
-
     private static long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String namaRekapitulasi;
+    @ManyToOne
+    private
+    Aktor aktor;
 
     @ManyToOne
     private
@@ -101,16 +101,6 @@ public class Rekapitulasi extends Additional implements Serializable {
     /**
      * @return the kegiatanPilihan
      */
-    public KegiatanPilihan getKegiatanPilihan() {
-        return kegiatanPilihan;
-    }
-
-    /**
-     * @param kegiatanPilihan the kegiatanPilihan to set
-     */
-    public void setKegiatanPilihan(KegiatanPilihan kegiatanPilihan) {
-        this.kegiatanPilihan = kegiatanPilihan;
-    }
 
     /**
      * @return the targetPenilaian
@@ -126,13 +116,6 @@ public class Rekapitulasi extends Additional implements Serializable {
         this.targetPenilaian = targetPenilaian;
     }
 
-    public AktorPilihan getAktorPilihan() {
-        return aktorPilihan;
-    }
-
-    public void setAktorPilihan(AktorPilihan aktorPilihan) {
-        this.aktorPilihan = aktorPilihan;
-    }
 
     public WaktuKegiatan getWaktuKegiatan() {
         return waktuKegiatan;
@@ -140,5 +123,30 @@ public class Rekapitulasi extends Additional implements Serializable {
 
     public void setWaktuKegiatan(WaktuKegiatan waktuKegiatan) {
         this.waktuKegiatan = waktuKegiatan;
+    }
+
+    public String getNamaRekapitulasi() {
+        return namaRekapitulasi;
+    }
+
+    public void setNamaRekapitulasi(String namaRekapitulasi) {
+        this.namaRekapitulasi = namaRekapitulasi;
+    }
+
+    public Aktor getAktor() {
+        return aktor;
+    }
+
+    public void setAktor(Aktor aktor) {
+        this.aktor = aktor;
+    }
+
+
+    public List<KegiatanRekapitulasi> getKegiatanRekapitulasis() {
+        return kegiatanRekapitulasis;
+    }
+
+    public void setKegiatanRekapitulasis(List<KegiatanRekapitulasi> kegiatanRekapitulasis) {
+        this.kegiatanRekapitulasis = kegiatanRekapitulasis;
     }
 }

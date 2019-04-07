@@ -29,10 +29,7 @@
 
             <div class="box">
                 <div class="box-header text-center">
-                    <h3 class="box-title">Daftar Rekapitulasi</h3>
-                    <div class=" text-right">
-                        <a th:href="@{/rekapitulasiwaktu}"type="button" class="butongizi">Tambah Rekapitulasi</a>
-                    </div>
+                    <h3 class="box-title">Daftar Kegiatan</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -40,41 +37,27 @@
                         <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Rekapitulasi</th>
-                            <th>Waktu Rekapitulasi</th>
-                            <th>Nama Member</th>
-                            <th>Action</th>
+                            <th>Nama Kegiatan</th>
+                            <th>Bulan Kegiatan</th>
+
                         </tr>
                         </thead>
                         <tbody>
-                        <tr  th:each="rekapitulasi, iterStat:${rekapitulasilist}">
+                        <tr  th:each="kegiatan, iterStat:${kegiatannonmilih}">
                             <td th:text="${iterStat.count}"></td>
-                            <td th:text="${rekapitulasi.namaRekapitulasi}"></td>
-                            <td th:text="${rekapitulasi.waktuKegiatan.waktuRekapitulasi}"></td>
-                            <td th:text="${rekapitulasi.aktor.namaAwal}"></td>
+                            <td th:text="${kegiatan.namaKegiatan}"></td>
+                            <td th:text="${kegiatan.tanggalKegiatan}"></td>
                             <td>
-                                <div class="btn-group text-center">
-                                    <button type="button" class="btn btn-default">Action</button>
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <!--<li><a th:href="@{memberdetail(id=${anggota.id})}">Detail</a></li>-->
-                                        <!--<li><a th:href="@{memberupdate(id=${anggota.id})}">Ubah</a></li>-->
-                                        <!--<li><a th:href="@{memberdelete(id=${anggota.id},idlg=${anggota.login.id})}">Hapus</a></li>-->
-                                    </ul>
-                                </div>
+                                <a th:href="@{rekapitulasimemilih(id=${kegiatan.id},idr=${rekapitulasipilih.id})}"type="button" class="butongizi">Pilih</a>
                             </td>
                         </tr>
                         </tbody>
                         <tfoot>
                         <tr>
                             <th>No</th>
-                            <th>Nama member</th>
-                            <th>Nomer SRT</th>
-                            <th>Jenjang Karir</th>
-                            <th>Action</th>
+                            <th>Nama Kegiatan</th>
+                            <th>Bulan Kegiatan</th>
+
                         </tr>
                         </tfoot>
                     </table>

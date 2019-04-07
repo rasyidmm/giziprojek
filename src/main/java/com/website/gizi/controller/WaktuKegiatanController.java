@@ -32,30 +32,22 @@ public class WaktuKegiatanController {
     }
     @RequestMapping(value = "/rekapitulasiwaktuset",method = RequestMethod.POST)
     public String rekapitulasiWaktuproses(@ModelAttribute("WaktuKegiatan") WaktuKegiatan waktuKegiatan, @Param("waktuRekapitulasii")String waktuRekapitulasii){
-        long sizee =  waktuKegiatanServices.getAllWaktuKegiatan().size();
-        long sama = 0;
-
-        for(int a = 0;a<sizee;a++){
-            if(asda != waktuRekapitulasii){
-                sama = sama + 1;
-            }
-        }
-        if(sama==sizee){
+        List<WaktuKegiatan> dsfsdfds = waktuKegiatanServices.findWaktuKegiatanByWakturekapitulasi(waktuRekapitulasii);
+        if(0 == dsfsdfds.size()){
             waktuKegiatan.setWaktuRekapitulasi(waktuRekapitulasii);
             waktuKegiatanServices.SaveOrUpdateWaktuKegiatan(waktuKegiatan);
         }
-        System.out.println("asda"+asda);
-        System.out.println("waktu"+waktuRekapitulasii);
-        System.out.println("sama"+sama);
-        System.out.println("size"+sizee);
         return "redirect:rekapitulasiwaktu";
     }
 
-//    @RequestMapping(value = "/rekapitulasimemberset")
-//    public ModelAndView rekapitulasimemberSet(){
-//        return new ModelAndView("rekapitulasi/halamanRekapitulasiMemberSet","setMember","");
-//    }
-//
+    @RequestMapping(value = "/rekapitulasiwaktudetail")
+    public ModelAndView rekapitulasimemberSet(@Param("id")long id){
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("rekapitulasidetail", waktuKegiatanServices.getWaktuKegiatanById(id));
+        mav.setViewName("waktukegiatan/halamanWaktuKegiatanDetail");
+        return mav;
+    }
+
 //    @RequestMapping(value = "/rekapitulasimemberset",method = RequestMethod.POST)
 //    public String Proses(){
 //        return"";

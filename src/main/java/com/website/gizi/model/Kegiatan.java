@@ -14,9 +14,7 @@ import javax.persistence.*;
  */
 @Entity
 public class Kegiatan extends Additional implements Serializable {
-    @JsonIgnore
-    @ManyToMany(mappedBy = "kegiatan")
-    private List<KegiatanPilihan>kegiatanPilihans;
+
     @JsonIgnore
     @OneToMany(mappedBy = "kegiatan")
     private Set<Penilaian> penilaians;
@@ -24,7 +22,9 @@ public class Kegiatan extends Additional implements Serializable {
     @OneToOne(mappedBy = "kegiatan")
     private
     TargetPenilaian targetPenilaian;
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "kegiatan")
+    private List<KegiatanRekapitulasi> kegiatanRekapitulasis;
     private static long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -98,16 +98,7 @@ public class Kegiatan extends Additional implements Serializable {
     /**
      * @return the kegiatanPilihans
      */
-    public List<KegiatanPilihan> getKegiatanPilihans() {
-        return kegiatanPilihans;
-    }
 
-    /**
-     * @param kegiatanPilihans the kegiatanPilihans to set
-     */
-    public void setKegiatanPilihans(List<KegiatanPilihan> kegiatanPilihans) {
-        this.kegiatanPilihans = kegiatanPilihans;
-    }
 
 
     /**
@@ -139,5 +130,23 @@ public class Kegiatan extends Additional implements Serializable {
 
     public void setTanggalKegiatan(String tanggalKegiatan) {
         this.tanggalKegiatan = tanggalKegiatan;
+    }
+
+
+
+    public Set<Penilaian> getPenilaians() {
+        return penilaians;
+    }
+
+    public void setPenilaians(Set<Penilaian> penilaians) {
+        this.penilaians = penilaians;
+    }
+
+    public List<KegiatanRekapitulasi> getKegiatanRekapitulasis() {
+        return kegiatanRekapitulasis;
+    }
+
+    public void setKegiatanRekapitulasis(List<KegiatanRekapitulasi> kegiatanRekapitulasis) {
+        this.kegiatanRekapitulasis = kegiatanRekapitulasis;
     }
 }

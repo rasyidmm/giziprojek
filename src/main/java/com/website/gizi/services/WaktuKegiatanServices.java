@@ -40,4 +40,8 @@ public class WaktuKegiatanServices implements WaktuKegiatanDao {
     public void deleteWaktuKegiatan(WaktuKegiatan a) {
         waktuKegiatanRepository.delete(a);
     }
+
+    public List<WaktuKegiatan> findWaktuKegiatanByWakturekapitulasi(String waktu){
+        return waktuKegiatanRepository.findWaktuKegiatanByWakturekapitulasi(waktu);
+    };
 }

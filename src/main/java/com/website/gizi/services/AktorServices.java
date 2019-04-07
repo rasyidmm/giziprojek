@@ -57,4 +57,8 @@ public class AktorServices implements AktorDao {
     public void deleteAktor(Aktor a) {
         aktorRepository.delete(a);
     }
+
+    public List<Aktor> findAktorByWaktu(long id){
+      return aktorRepository.findAktorByWaktu(id);
+    };
 }

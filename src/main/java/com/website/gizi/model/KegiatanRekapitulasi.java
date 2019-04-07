@@ -1,32 +1,20 @@
 package com.website.gizi.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import java.io.Serializable;
 import javax.persistence.*;
-
-/**
- *
- * @author rasyid
- */
+import java.io.Serializable;
 @Entity
-public class AktorPilihan implements Serializable {
+public class KegiatanRekapitulasi extends Additional implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     private
-    Aktor aktor;
-    @OneToOne
+    Kegiatan kegiatan;
+    @ManyToOne
     private
     Rekapitulasi rekapitulasi;
-
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 
     public Long getId() {
         return id;
@@ -46,10 +34,10 @@ public class AktorPilihan implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof AktorPilihan)) {
+        if (!(object instanceof Kegiatan)) {
             return false;
         }
-        AktorPilihan other = (AktorPilihan) object;
+        Kegiatan other = (Kegiatan) object;
         if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.getId().equals(other.getId()))) {
             return false;
         }
@@ -58,17 +46,30 @@ public class AktorPilihan implements Serializable {
 
     @Override
     public String toString() {
-        return "model.AktorPilihan[ id=" + getId() + " ]";
+        return "model.KegiatanController[ id=" + getId() + " ]";
     }
 
-    public Aktor getAktor() {
-        return aktor;
+    /**
+     * @return the serialVersionUID
+     */
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public void setAktor(Aktor aktor) {
-        this.aktor = aktor;
+    /**
+     * @param aSerialVersionUID the serialVersionUID to set
+     */
+    public static void setSerialVersionUID(long aSerialVersionUID) {
+        serialVersionUID = aSerialVersionUID;
     }
 
+    public Kegiatan getKegiatan() {
+        return kegiatan;
+    }
+
+    public void setKegiatan(Kegiatan kegiatan) {
+        this.kegiatan = kegiatan;
+    }
 
     public Rekapitulasi getRekapitulasi() {
         return rekapitulasi;
@@ -77,4 +78,9 @@ public class AktorPilihan implements Serializable {
     public void setRekapitulasi(Rekapitulasi rekapitulasi) {
         this.rekapitulasi = rekapitulasi;
     }
+
+    /**
+     * @return the namaKegiatan
+     */
+
 }

@@ -23,7 +23,7 @@ public class Aktor extends Additional implements Serializable {
     private List<Kegiatan>kegiatans;
     @JsonIgnore
     @OneToMany(mappedBy = "aktor")
-    private List<AktorPilihan> aktorPilihans;
+    private List<Rekapitulasi> rekapitulasis;
 
     private static long serialVersionUID = 1L;
     @Id
@@ -174,13 +174,6 @@ public class Aktor extends Additional implements Serializable {
         serialVersionUID = aSerialVersionUID;
     }
 
-    public List<AktorPilihan> getAktorPilihans() {
-        return aktorPilihans;
-    }
-
-    public void setAktorPilihans(List<AktorPilihan> aktorPilihans) {
-        this.aktorPilihans = aktorPilihans;
-    }
 
     public String getPendidikanTerahir() {
         return pendidikanTerahir;
@@ -212,5 +205,13 @@ public class Aktor extends Additional implements Serializable {
 
     public void setNama_foto(String nama_foto) {
         this.nama_foto = nama_foto;
+    }
+
+    public List<Rekapitulasi> getRekapitulasis() {
+        return rekapitulasis;
+    }
+
+    public void setRekapitulasis(List<Rekapitulasi> rekapitulasis) {
+        this.rekapitulasis = rekapitulasis;
     }
 }

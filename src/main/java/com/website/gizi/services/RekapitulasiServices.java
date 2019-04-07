@@ -41,4 +41,8 @@ public class RekapitulasiServices implements RekapitulasiDao {
     public void deleteRekapitulasi(Rekapitulasi a) {
         rekapitulasiRepository.delete(a);
     }
+
+    public Rekapitulasi findRekapitulasiByAktorAndWaktuKegiatan(long ida,long idwk){
+        return rekapitulasiRepository.findRekapitulasiByAktorAndWaktuKegiatan(ida,idwk);
+    }
 }

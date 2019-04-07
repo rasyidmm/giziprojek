@@ -19,41 +19,6 @@ public class AktorController {
     LoginServices loginServices;
     @Autowired
     RoleServices roleServices;
-//
-//    @RequestMapping(value = "/tambahmember",method = RequestMethod.POST)
-//    public ResponseEntity<?> tambahmember(@RequestBody TambahMemberRequest tambahMemberRequest){
-//        if(loginServices.findByUsernameAktor(tambahMemberRequest.getUsernameAktor())!=null){
-//
-//            return (ResponseEntity<?>) ResponseEntity.status(HttpStatus.BAD_REQUEST);
-//        }else {
-//        Login login = new Login();
-//        login.setUsernameAktor(tambahMemberRequest.getUsernameAktor());
-//        login.setPasswordAktor(tambahMemberRequest.getPasswordAktor());
-//        login.setRole(roleServices.getRoleById(1));
-//        Login ll = loginServices.SaveOrUpdateLogin(login);
-//        Aktor aktor = new Aktor();
-//        aktor.setLogin(ll);
-//        aktor.setNamaAwal(tambahMemberRequest.getNamaAwal());
-//        aktor.setNamaAkhir(tambahMemberRequest.getNamaAkhir());
-//        aktor.setAlamat(tambahMemberRequest.getAlamat());
-//        aktor.setNoHp(tambahMemberRequest.getNoHp());
-//        Aktor result = aktorServices.SaveOrUpdateAktor(aktor);
-//        URI location = ServletUriComponentsBuilder
-//                .fromCurrentContextPath().path("/users/{username}")
-//                .buildAndExpand(result.getNamaAwal()).toUri();
-//        return ResponseEntity.created(location).body(new ApiResponse(true,"asdasdadasd"));
-//    }}
-//    @RequestMapping(value = "/memberall",method = RequestMethod.GET)
-//    public List<Aktor> memberall(){
-//
-//        return aktorServices.getAllAktor();
-//    }
-//
-//    @RequestMapping(value = "/jumlahmember",method = RequestMethod.POST)
-//    public String JumlahMember(@RequestParam ("namarole") String namarole){
-//        return String.valueOf(loginServices.findSummember(namarole));
-//    }
-
     @RequestMapping(value = "/member")
     public ModelAndView halamanMember(){
         return new ModelAndView("member/halamanMember","memberlist",aktorServices.getAllAktor());
