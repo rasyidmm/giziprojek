@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Date;
 import java.util.List;
 
-@RestController
+@Controller
 public class RekapitulasiController {
     @Autowired
     AktorServices aktorServices;
@@ -68,13 +68,14 @@ public class RekapitulasiController {
 
     @RequestMapping(value = "/rekapitulasimemilih")
     public ModelAndView rekapitulasiMemilihKegiatan(@Param("idr")long idr){
+        Rekapitulasi r = rekapitulasiServices.getRekapitulasiById(idr);
         ModelAndView mav = new ModelAndView();
         mav.addObject("rekapitulasipilih",rekapitulasiServices.getRekapitulasiById(idr));
-        mav.addObject("kegiatannonmilih",kegiatanServices.findKegiatanNONByRekapitulasiID(idr));
+        mav.addObject("kegiatannonmilih",kegiatanServices.findKegiatanNONByRekapitulasiID(idr,r.getWaktuKegiatan().getWaktuRekapitulasi()));
         mav.setViewName("rekapitulasi/halamanRekapitulasiKegiatanSet");
         return mav;
     }
-    @RequestMapping(value = "/rekapitulasimemilih",method = RequestMethod.POST)
+    @RequestMapping(value = "/rekapitulasimemilihkegiatan")
     public String rekapitulasiMemilihKegiatanP(@Param("id")long id,@Param("idr")long idr){
         KegiatanRekapitulasi kr = new KegiatanRekapitulasi();
         kr.setKegiatan(kegiatanServices.getKegiatanById(id));

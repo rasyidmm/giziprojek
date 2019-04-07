@@ -13,6 +13,6 @@ import java.util.List;
 public interface KegiatanRepository extends JpaRepository<Kegiatan,Long> {
     @Query(value = "select * from kegiatan a left join kegiatan_rekapitulasi b on a.id = b.kegiatan_id where b.rekapitulasi_id =:id ",nativeQuery = true)
     public List<Kegiatan> findKegiatanByRekapitulasiID(@Param("id")long id);
-    @Query(value = "select * from kegiatan a left join kegiatan_rekapitulasi b on a.id = b.kegiatan_id where b.rekapitulasi_id =:id is null ",nativeQuery = true)
-    public List<Kegiatan> findKegiatanNONByRekapitulasiID(@Param("id")long id);
+    @Query(value = "select * from kegiatan a left join kegiatan_rekapitulasi b on a.id = b.kegiatan_id where b.rekapitulasi_id =:id is null AND a.tanggal_kegiatan =:waktu",nativeQuery = true)
+    public List<Kegiatan> findKegiatanNONByRekapitulasiID(@Param("id")long id,@Param("waktu")String waktu);
 }

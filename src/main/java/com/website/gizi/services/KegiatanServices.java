@@ -44,7 +44,7 @@ public class KegiatanServices implements KegiatanDao {
     public List<Kegiatan> findKegiatanByRekapitulasiID(long id){
         return kegiatanRepository.findKegiatanByRekapitulasiID(id);
     };
-    public List<Kegiatan> findKegiatanNONByRekapitulasiID(long id){
-        return kegiatanRepository.findKegiatanNONByRekapitulasiID(id);
+    public List<Kegiatan> findKegiatanNONByRekapitulasiID(long id,String waktu){
+        return kegiatanRepository.findKegiatanNONByRekapitulasiID(id,waktu);
     };
 }
