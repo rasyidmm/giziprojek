@@ -30,7 +30,7 @@ public class RekapitulasiController {
 
     @RequestMapping(value = "/rekapitulasi")
     public ModelAndView rekapitulasi(){
-        return new ModelAndView("rekapitulasi/halamanRekapitulasi" ,"rekapitulasilist",rekapitulasiServices.getAllRekapitulasi());
+        return new ModelAndView("rekapitulasi/halamanRekapitulasi","rekapitulasilist",rekapitulasiServices.getAllRekapitulasi());
     }
 
     @RequestMapping(value = "/rekapitulasimemberset")
