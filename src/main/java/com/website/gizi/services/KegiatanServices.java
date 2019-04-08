@@ -47,4 +47,10 @@ public class KegiatanServices implements KegiatanDao {
     public List<Kegiatan> findKegiatanNONByRekapitulasiID(long id,String waktu){
         return kegiatanRepository.findKegiatanNONByRekapitulasiID(id,waktu);
     };
+    public List<Kegiatan>findKegiatanByTargetPenilaian(long idr){
+        return kegiatanRepository.findKegiatanByTargetPenilaian(idr);
+    };
+    public List<Kegiatan>findKegiatanNONByTargetPenilaian(long idr){
+        return kegiatanRepository.findKegiatanNONByTargetPenilaian(idr);
+    };
 }
