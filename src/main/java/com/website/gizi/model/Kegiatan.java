@@ -7,21 +7,22 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
+import javax.persistence.Transient;
 
 /**
  *
  * @author rasyid
  */
 @Entity
-public class Kegiatan extends Additional implements Serializable {
+public class Kegiatan  implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "kegiatan")
     private Set<Penilaian> penilaians;
     @JsonIgnore
-    @OneToOne(mappedBy = "kegiatan")
+    @OneToMany(mappedBy = "kegiatan")
     private
-    TargetPenilaian targetPenilaian;
+    List<TargetPenilaian> targetPenilaian;
     @JsonIgnore
     @OneToMany(mappedBy = "kegiatan")
     private List<KegiatanRekapitulasi> kegiatanRekapitulasis;
@@ -115,15 +116,6 @@ public class Kegiatan extends Additional implements Serializable {
         this.aktor = aktor;
     }
 
-    public TargetPenilaian getTargetPenilaian() {
-        return targetPenilaian;
-    }
-
-    public void setTargetPenilaian(TargetPenilaian targetPenilaian) {
-        this.targetPenilaian = targetPenilaian;
-    }
-
-
     public String getTanggalKegiatan() {
         return tanggalKegiatan;
     }
@@ -148,5 +140,13 @@ public class Kegiatan extends Additional implements Serializable {
 
     public void setKegiatanRekapitulasis(List<KegiatanRekapitulasi> kegiatanRekapitulasis) {
         this.kegiatanRekapitulasis = kegiatanRekapitulasis;
+    }
+
+    public List<TargetPenilaian> getTargetPenilaian() {
+        return targetPenilaian;
+    }
+
+    public void setTargetPenilaian(List<TargetPenilaian> targetPenilaian) {
+        this.targetPenilaian = targetPenilaian;
     }
 }

@@ -22,8 +22,8 @@ public class Rekapitulasi extends Additional implements Serializable {
     private List<KegiatanRekapitulasi>kegiatanRekapitulasis;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "rekapitulasi")
-    private TargetPenilaian targetPenilaian;
+    @OneToMany(mappedBy = "rekapitulasi")
+    private List<TargetPenilaian> targetPenilaians;
 
     private static long serialVersionUID = 1L;
     @Id
@@ -105,16 +105,6 @@ public class Rekapitulasi extends Additional implements Serializable {
     /**
      * @return the targetPenilaian
      */
-    public TargetPenilaian getTargetPenilaian() {
-        return targetPenilaian;
-    }
-
-    /**
-     * @param targetPenilaian the targetPenilaian to set
-     */
-    public void setTargetPenilaian(TargetPenilaian targetPenilaian) {
-        this.targetPenilaian = targetPenilaian;
-    }
 
 
     public WaktuKegiatan getWaktuKegiatan() {
@@ -148,5 +138,13 @@ public class Rekapitulasi extends Additional implements Serializable {
 
     public void setKegiatanRekapitulasis(List<KegiatanRekapitulasi> kegiatanRekapitulasis) {
         this.kegiatanRekapitulasis = kegiatanRekapitulasis;
+    }
+
+    public List<TargetPenilaian> getTargetPenilaians() {
+        return targetPenilaians;
+    }
+
+    public void setTargetPenilaians(List<TargetPenilaian> targetPenilaians) {
+        this.targetPenilaians = targetPenilaians;
     }
 }

@@ -1,6 +1,7 @@
 package com.website.gizi.repository;
 
 import com.website.gizi.model.Kegiatan;
+import com.website.gizi.model.TargetPenilaian;
 import org.hibernate.validator.constraints.URL;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,10 +14,9 @@ import java.util.List;
 public interface KegiatanRepository extends JpaRepository<Kegiatan,Long> {
     @Query(value = "select * from kegiatan a left join kegiatan_rekapitulasi b on a.id = b.kegiatan_id where b.rekapitulasi_id =:id ",nativeQuery = true)
     public List<Kegiatan> findKegiatanByRekapitulasiID(@Param("id")long id);
-    @Query(value = "select * from kegiatan a left join kegiatan_rekapitulasi b on a.id = b.kegiatan_id where b.rekapitulasi_id =:id is null AND a.tanggal_kegiatan =:waktu",nativeQuery = true)
+    @Query(value = "select * from kegiatan a full join kegiatan_rekapitulasi b on a.id = b.kegiatan_id where a.tanggal_kegiatan =:waktu and b.rekapitulasi_id !=:id order by a.id desc",nativeQuery = true)
     public List<Kegiatan> findKegiatanNONByRekapitulasiID(@Param("id")long id,@Param("waktu")String waktu);
     @Query(value = "SELECT * FROM kegiatan a LEFT JOIN target_penilaian b on a.id = b.kegiatan_id WHERE b.rekapitulasi_id =:idr ISNULL",nativeQuery = true)
     public List<Kegiatan>findKegiatanNONByTargetPenilaian(@Param("idr")long idr);
-    @Query(value = "SELECT * FROM kegiatan a LEFT JOIN target_penilaian b on a.id = b.kegiatan_id WHERE b.rekapitulasi_id =:idr",nativeQuery = true)
-    public List<Kegiatan>findKegiatanByTargetPenilaian(@Param("idr")long idr);
+
 }

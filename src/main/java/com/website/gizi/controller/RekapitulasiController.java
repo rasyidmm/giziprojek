@@ -47,8 +47,7 @@ public class RekapitulasiController {
         Aktor a = aktorServices.getAktorById(id);
         WaktuKegiatan wk = waktuKegiatanServices.getWaktuKegiatanById(ids);
         Rekapitulasi rekapitulasi =  new Rekapitulasi();
-        System.out.printf(String.valueOf(id));
-        System.out.printf(String.valueOf(ids));
+        rekapitulasi.setNamaRekapitulasi(a.getNamaAkhir()+" "+a.getNamaAkhir()+" "+(wk.getWaktuRekapitulasi()));
         rekapitulasi.setAktor(a);
         rekapitulasi.setWaktuKegiatan(wk);
         rekapitulasiServices.SaveOrUpdateRekapitulasi(rekapitulasi);

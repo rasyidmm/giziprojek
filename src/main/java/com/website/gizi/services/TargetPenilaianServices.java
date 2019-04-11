@@ -41,4 +41,7 @@ public class TargetPenilaianServices implements TargetPenilaianDao {
     public void deleteTargetPenilaian(TargetPenilaian a) {
         targetPenilaianRepository.save(a);
     }
+    public List<TargetPenilaian> findKegiatanByTargetPenilaian(long idr){
+       return targetPenilaianRepository.findKegiatanByTargetPenilaian(idr);
+    };
 }

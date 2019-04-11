@@ -14,35 +14,5 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class PenilaianController {
-    @Autowired
-    KegiatanServices kegiatanServices;
-    @Autowired
-    RekapitulasiServices rekapitulasiServices;
-    @Autowired
-    TargetPenilaianServices targetPenilaianServices;
-    @RequestMapping(value = "/rekapitulasikegiatanterpilih")
-    public ModelAndView rekapitulasiKegiatanTerpilih(@Param("idr")long idr){
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("kegiatanNONnilai",kegiatanServices.findKegiatanNONByTargetPenilaian(idr));
-        mav.addObject("kegiatannilai",kegiatanServices.findKegiatanByTargetPenilaian(idr));
-        mav.setViewName("rekapitulasi/halamanPenilaianKegiatanTerpilih");
-        return mav;
-    }
 
-    @RequestMapping(value = "/rekapitulasinilaiset")
-    public ModelAndView rekapitulasiNilaiSet(@Param("id")long id, @Param("idr")long idr){
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("kegiatanpilih",kegiatanServices.getKegiatanById(id));
-        mav.addObject("rekapitulasi",rekapitulasiServices.getRekapitulasiById(idr));
-        mav.setViewName("rekapitulasi/");
-        return mav;
-    }
-    @RequestMapping(value = "/rekapitulasinilaisetproses")
-    public String rekapitulasiNilaiSetproses(@Param("id")long id,@Param("idr")long idr){
-        TargetPenilaian tr =  new TargetPenilaian();
-        tr.setRekapitulasi(rekapitulasiServices.getRekapitulasiById(idr));
-        tr.setKegiatan(kegiatanServices.getKegiatanById(id));
-        targetPenilaianServices.SaveOrUpdateTargetPenilaian(tr);
-        return "redirect:rekapitulasikegiatanterpilih?idr="+idr;
-    }
 }

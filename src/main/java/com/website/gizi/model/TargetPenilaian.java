@@ -18,9 +18,9 @@ public class TargetPenilaian extends Additional implements Serializable {
     private Long skorTarget;
     private Long volTarget;
     private Long nilaiTarget;
-    @OneToOne
+    @ManyToOne
     private Kegiatan kegiatan;
-    @OneToOne
+    @ManyToOne
     private Rekapitulasi rekapitulasi;
 
     public Long getId() {
@@ -112,32 +112,25 @@ public class TargetPenilaian extends Additional implements Serializable {
         serialVersionUID = aSerialVersionUID;
     }
 
-    /**
-     * @return the kegiatan
-     */
     public Kegiatan getKegiatan() {
         return kegiatan;
     }
 
-    /**
-     * @param kegiatan the kegiatan to set
-     */
     public void setKegiatan(Kegiatan kegiatan) {
         this.kegiatan = kegiatan;
     }
 
-    /**
-     * @return the rekapitulasi
-     */
     public Rekapitulasi getRekapitulasi() {
         return rekapitulasi;
     }
 
-    /**
-     * @param rekapitulasi the rekapitulasi to set
-     */
     public void setRekapitulasi(Rekapitulasi rekapitulasi) {
         this.rekapitulasi = rekapitulasi;
     }
+
+    /**
+     * @return the kegiatan
+     */
+
 
 }
