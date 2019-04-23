@@ -42,7 +42,7 @@
                             <th>No</th>
                             <th>Nama Kegiatan</th>
                             <th>Kegiatan Bulan</th>
-                            <th>Nama Pembuat</th>
+                            <th>Untuk</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -51,7 +51,7 @@
                             <td th:text="${iterStat.count}"></td>
                             <td th:text="${kegiatan.namaKegiatan}"></td>
                             <td th:text="${kegiatan.tanggalKegiatan}"></td>
-                            <td th:text="dibuatoleh"></td>
+                            <td th:text="${kegiatan.aktor.namaAwal}"></td>
                             <td>
                                 <div class="btn-group text-center">
                                     <button type="button" class="btn btn-default">Action</button>
@@ -71,9 +71,9 @@
                         <tfoot>
                         <tr>
                             <th>No</th>
-                            <th>Nama member</th>
-                            <th>Nomer SRT</th>
-                            <th>Jenjang Karir</th>
+                            <th>Nama Kegiatan</th>
+                            <th>Kegiatan Bulan</th>
+                            <th>Untuk</th>
                             <th>Action</th>
                         </tr>
                         </tfoot>

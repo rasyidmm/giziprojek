@@ -47,6 +47,16 @@
                                                 <input type="text" class="form-control pull-right" readonly name="tanggalKegiatan" th:value="${kegiatanupdate.tanggalKegiatan}" id="datepicker" data-date-format="mm-yyyy" data-date-viewmode="years" data-date-minviewmode="months">
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label>Kelompok Soal</label>
+                                            <select  name="nama_kelomok_soal" th:value="${kegiatanupdate.aktor.namaAkhir}" class="form-control">
+                                                <option th:each="kelompoksaol:${aktorlist}"
+                                                        th:value="${kelompoksaol.id}"
+                                                        th:text="${kelompoksaol.namaAkhir.concat(kelompoksaol.namaAkhir)}"
+                                                        th:selected="${kegiatanupdate.aktor.id ==kelompoksaol.id}">
+                                                </option>
+                                            </select>
+                                        </div>
                                         <button type="submit" class="butongizi  text-center">Submit</button>
                                     </form>
                                 </div>

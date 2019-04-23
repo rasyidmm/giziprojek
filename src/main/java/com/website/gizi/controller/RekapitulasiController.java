@@ -52,24 +52,25 @@ public class RekapitulasiController {
         rekapitulasiServices.SaveOrUpdateRekapitulasi(rekapitulasi);
         Rekapitulasi grer = rekapitulasiServices.findRekapitulasiByAktorAndWaktuKegiatan(id,ids);
         long idr = grer.getId();
-        return "redirect:rekapitulasikegiatanset?idr="+idr;
+        return "redirect:rekapitulasikegiatanset?idr=&?ida="+idr+id;
     }
 
     @RequestMapping(value = "/rekapitulasikegiatanset")
-    public ModelAndView rekapitulasiKegiatanSet(@Param("idr")long idr){
+    public ModelAndView rekapitulasiKegiatanSet(@Param("idr")long idr,@Param("ida")long ida){
         ModelAndView mav = new ModelAndView();
         mav.addObject("rekapitulasipilih",rekapitulasiServices.getRekapitulasiById(idr));
         mav.addObject("kegiatanterpilihlist",kegiatanServices.findKegiatanByRekapitulasiID(idr));
+        mav.addObject("aktorpilih",aktorServices.getAktorById(ida));
         mav.setViewName("rekapitulasi/halamanRekapitulasiKegiatan");
         return mav;
     }
 
     @RequestMapping(value = "/rekapitulasimemilih")
-    public ModelAndView rekapitulasiMemilihKegiatan(@Param("idr")long idr){
+    public ModelAndView rekapitulasiMemilihKegiatan(@Param("idr")long idr,@Param("ida")long ida){
         Rekapitulasi r = rekapitulasiServices.getRekapitulasiById(idr);
         ModelAndView mav = new ModelAndView();
         mav.addObject("rekapitulasipilih",rekapitulasiServices.getRekapitulasiById(idr));
-        mav.addObject("kegiatannonmilih",kegiatanServices.findKegiatanNONByRekapitulasiID(idr,r.getWaktuKegiatan().getWaktuRekapitulasi()));
+        mav.addObject("kegiatannonmilih",kegiatanServices.findKegiatanNONByRekapitulasiID(idr,r.getWaktuKegiatan().getWaktuRekapitulasi(),ida));
         mav.setViewName("rekapitulasi/halamanRekapitulasiKegiatanSet");
         return mav;
     }
