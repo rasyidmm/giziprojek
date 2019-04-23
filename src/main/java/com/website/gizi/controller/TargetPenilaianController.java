@@ -21,8 +21,8 @@ public class TargetPenilaianController {
     @RequestMapping(value = "/rekapitulasikegiatanterpilih")
     public ModelAndView rekapitulasiKegiatanTerpilih(@Param("idr")long idr){
         ModelAndView mav = new ModelAndView();
-        mav.addObject("kegiatanNONnilai",kegiatanServices.findKegiatanNONByTargetPenilaian(idr));
-        mav.addObject("kegiatannilai",targetPenilaianServices.findKegiatanByTargetPenilaian(idr));
+        mav.addObject("targetNilaiNONnilai",targetPenilaianServices.findAllByKegiatanAndRekapitulasiWithinNULL(idr));
+        mav.addObject("targetNilaiINnilai",targetPenilaianServices.findAllByKegiatanAndRekapitulasiWithinNOTNULL(idr));
         mav.addObject("rekapitulasiterpilih",rekapitulasiServices.getRekapitulasiById(idr));
         mav.setViewName("targetpenilaian/halamanPenilaianKegiatanTerpilih");
         return mav;
@@ -31,7 +31,7 @@ public class TargetPenilaianController {
     @RequestMapping(value = "/rekapitulasinilaiset")
     public ModelAndView rekapitulasiNilaiSet(@Param("id")long id, @Param("idr")long idr){
         ModelAndView mav = new ModelAndView();
-        mav.addObject("kegiatanpilih",kegiatanServices.getKegiatanById(id));
+        mav.addObject("targetNilaiSet",targetPenilaianServices.getTargetPenilaianById(id));
         mav.addObject("rekapitulasi",rekapitulasiServices.getRekapitulasiById(idr));
         mav.setViewName("targetpenilaian/halamanPenilaianKegiatanSet");
         return mav;
@@ -40,9 +40,9 @@ public class TargetPenilaianController {
     public String rekapitulasiNilaiSetproses(@Param("id")long id,@Param("idr")long idr,
                                              @Param("skorTarget")long skorTarget,@Param("volTarget")long volTarget,
                                              @Param("nilaiTarget")long nilaiTarget){
-        TargetPenilaian tr =  new TargetPenilaian();
-        tr.setRekapitulasi(rekapitulasiServices.getRekapitulasiById(idr));
-        tr.setKegiatan(kegiatanServices.getKegiatanById(id));
+        TargetPenilaian tr =  targetPenilaianServices.getTargetPenilaianById(id);
+        tr.setRekapitulasi(tr.getRekapitulasi());
+        tr.setKegiatan(tr.getKegiatan());
         tr.setSkorTarget(skorTarget);
         tr.setVolTarget(volTarget);
         tr.setNilaiTarget(nilaiTarget);

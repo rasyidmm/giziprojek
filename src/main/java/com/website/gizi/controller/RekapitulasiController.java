@@ -1,9 +1,6 @@
 package com.website.gizi.controller;
 
-import com.website.gizi.model.Aktor;
-import com.website.gizi.model.KegiatanRekapitulasi;
-import com.website.gizi.model.Rekapitulasi;
-import com.website.gizi.model.WaktuKegiatan;
+import com.website.gizi.model.*;
 import com.website.gizi.services.*;
 import jdk.nashorn.internal.objects.ArrayBufferView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +24,8 @@ public class RekapitulasiController {
     KegiatanServices kegiatanServices;
     @Autowired
     KegiatanRekapitulasiService kegiatanRekapitulasiService;
+    @Autowired
+    TargetPenilaianServices targetPenilaianServices;
 
     @RequestMapping(value = "/rekapitulasi")
     public ModelAndView rekapitulasi(){
@@ -80,6 +79,13 @@ public class RekapitulasiController {
         kr.setKegiatan(kegiatanServices.getKegiatanById(id));
         kr.setRekapitulasi(rekapitulasiServices.getRekapitulasiById(idr));
         kegiatanRekapitulasiService.SaveOrUpdateKegiatanRekapitulasi(kr);
+        TargetPenilaian tr =  new TargetPenilaian();
+        tr.setRekapitulasi(rekapitulasiServices.getRekapitulasiById(idr));
+        tr.setKegiatan(kegiatanServices.getKegiatanById(id));
+        tr.setVolTarget(0L);
+        tr.setNilaiTarget(0L);
+        tr.setSkorTarget(0L);
+        targetPenilaianServices.SaveOrUpdateTargetPenilaian(tr);
         return "redirect:rekapitulasikegiatanset?idr="+idr;
     }
 

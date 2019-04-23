@@ -29,7 +29,9 @@
 
             <div class="box">
                 <div class="box-header text-center">
-                    <h3 class="box-title">Daftar Rekapitulasi</h3>
+                    <h3 class="box-title">Daftar Kegiatan Belum Ternilai</h3>
+                    </br>
+                    <h3 class="box-title"  th:text="${rekapitulasiterpilih.namaRekapitulasi}"></h3>
                     <!--<div class=" text-right">-->
                         <!--<a th:href="@{/rekapitulasiwaktu}"type="button" class="butongizi">Tambah Rekapitulasi</a>-->
                     <!--</div>-->
@@ -46,12 +48,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr  th:each="kegiatan, iterStat:${kegiatanNONnilai}">
+                        <tr  th:each="kegiatan, iterStat:${targetNilaiNONnilai}">
                             <td th:text="${iterStat.count}"></td>
-                            <td th:text="${kegiatan.namaKegiatan}"></td>
-                            <td th:text="${kegiatan.tanggalKegiatan}"></td>
+                            <td th:text="${kegiatan.kegiatan.namaKegiatan}"></td>
+                            <td th:text="${kegiatan.kegiatan.tanggalKegiatan}"></td>
                             <td>
-                                <a th:href="@{rekapitulasinilaiset(id=${kegiatan.id},idr=${rekapitulasiterpilih.id})}"type="button" class="butongizi">Pilih</a>
+                                <a th:href="@{rekapitulasinilaiset(id=${kegiatan.id})}"type="button" class="butongizi">Pilih</a>
                             </td>
                         </tr>
                         </tbody>
@@ -68,7 +70,9 @@
             </div>
             <div class="box">
                 <div class="box-header text-center">
-                    <h3 class="box-title">Daftar Rekapitulasi</h3>
+                    <h3 class="box-title">Daftar Kegiatan Sudah Ternilai</h3>
+                    </br>
+                    <h3 class="box-title"  th:text="${rekapitulasiterpilih.namaRekapitulasi}"></h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -85,7 +89,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr  th:each="targetnilai, iterStat:${kegiatannilai}">
+                        <tr  th:each="targetnilai, iterStat:${targetNilaiINnilai}">
                             <td th:text="${iterStat.count}"></td>
                             <td th:text="${targetnilai.kegiatan.namaKegiatan}"></td>
                             <td th:text="${targetnilai.kegiatan.tanggalKegiatan}"></td>
@@ -93,7 +97,7 @@
                             <td th:text="${targetnilai.skorTarget}"></td>
                             <td th:text="${targetnilai.nilaiTarget}"></td>
                             <td>
-                                <a th:href="@{rekapitulasinilaiset(id=${targetnilai.id},idr=${rekapitulasiterpilih.id})}"type="button" class="butongizi">Pilih</a>
+                                <a th:href="@{rekapitulasinilaiset(id=${targetnilai.id})}"type="button" class="butongizi">Pilih</a>
                             </td>
                         </tr>
                         </tbody>

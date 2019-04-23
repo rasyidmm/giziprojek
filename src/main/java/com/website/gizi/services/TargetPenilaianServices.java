@@ -44,4 +44,10 @@ public class TargetPenilaianServices implements TargetPenilaianDao {
     public List<TargetPenilaian> findKegiatanByTargetPenilaian(long idr){
        return targetPenilaianRepository.findKegiatanByTargetPenilaian(idr);
     };
+    public List<TargetPenilaian>findAllByKegiatanAndRekapitulasiWithinNULL(long idr){
+        return targetPenilaianRepository.findAllByKegiatanAndRekapitulasiWithinNULL(idr);
+    };
+    public List<TargetPenilaian>findAllByKegiatanAndRekapitulasiWithinNOTNULL(long idr){
+        return targetPenilaianRepository.findAllByKegiatanAndRekapitulasiWithinNOTNULL(idr);
+    };
 }

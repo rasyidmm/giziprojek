@@ -27,7 +27,9 @@
                     <div class="box-header with-border">
                         <div class="col-md-12 text-center">
                             <h3 class="box-title">Mengatur Kegiatan</h3>
-                            <h3 class="box-title" th:text="${kegiatanpilih.namaKegiatan}"></h3>
+                            </br>
+                            <h3 class="box-title" th:text="${targetNilaiSet.kegiatan.namaKegiatan}"></h3>
+                            </br>
                             <h3 class="box-title" th:text="${rekapitulasi.namaRekapitulasi}"></h3>
                         </div>
                         <div class="col-md-12">
@@ -35,8 +37,8 @@
                             <div class="col-md-6">
                                 <div class="box-body">
                                     <form method="POST" action="rekapitulasinilaisetproses" enctype="multipart/form-data">
-                                        <input type="hidden" th:name="id" th:value="${kegiatanpilih.id}" >
-                                        <input type="hidden" th:name="idr" th:value="${rekapitulasi.id}" >
+                                        <input type="hidden" th:name="id" th:value="${targetNilaiSet.id}" >
+                                        <!--<input type="hidden" th:name="idr" th:value="${rekapitulasi.id}" >-->
                                         <div class="form-group text-center">
                                             <label>Skor Target</label>
                                             <input type="number" class="form-control" name="skorTarget" placeholder="Skor Target">
