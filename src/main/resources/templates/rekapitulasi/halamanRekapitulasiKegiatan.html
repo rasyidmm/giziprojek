@@ -32,7 +32,7 @@
                     <h3 class="box-title">Daftar Kegiatan Terpilih </h3>
                     <h3 class="box-title" th:text="${rekapitulasipilih.getNamaRekapitulasi()}"></h3>
                     <div class=" text-right">
-                        <a th:href="@{/rekapitulasimemilih(idr=${rekapitulasipilih.id})}"type="button" class="butongizi">Pilih Kegiatan</a>
+                        <a th:href="@{/rekapitulasimemilih(idr=${rekapitulasipilih.id},ida=${aktorpilih.id})}"type="button" class="butongizi">Pilih Kegiatan</a>
                     </div>
                 </div>
                 <!-- /.box-header -->

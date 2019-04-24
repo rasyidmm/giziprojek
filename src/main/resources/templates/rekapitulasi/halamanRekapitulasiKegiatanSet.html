@@ -49,7 +49,7 @@
                             <td th:text="${kegiatan.namaKegiatan}"></td>
                             <td th:text="${kegiatan.tanggalKegiatan}"></td>
                             <td>
-                                <a th:href="@{rekapitulasimemilihkegiatan(id=${kegiatan.id},idr=${rekapitulasipilih.id})}"type="button" class="butongizi">Pilih</a>
+                                <a th:href="@{rekapitulasimemilihkegiatan(id=${kegiatan.id},idr=${rekapitulasipilih.id},ida=${aktorpilih.id})}"type="button" class="butongizi">Pilih</a>
                             </td>
                         </tr>
                         </tbody>
