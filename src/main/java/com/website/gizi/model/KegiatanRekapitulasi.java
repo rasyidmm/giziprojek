@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import javax.persistence.Transient;
 @Entity
-public class KegiatanRekapitulasi implements Serializable {
+public class KegiatanRekapitulasi extends Additional implements Serializable {
 
     private static long serialVersionUID = 1L;
     @Id

@@ -12,7 +12,7 @@ import javax.persistence.*;
  * @author rasyid
  */
 @Entity
-public class WaktuKegiatan implements Serializable {
+public class WaktuKegiatan extends Additional implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "waktuKegiatan")

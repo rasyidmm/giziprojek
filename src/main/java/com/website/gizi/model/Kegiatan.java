@@ -14,7 +14,7 @@ import javax.persistence.Transient;
  * @author rasyid
  */
 @Entity
-public class Kegiatan  implements Serializable {
+public class Kegiatan extends Additional implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "kegiatan")

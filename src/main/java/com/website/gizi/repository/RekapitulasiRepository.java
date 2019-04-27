@@ -16,4 +16,6 @@ public interface RekapitulasiRepository extends JpaRepository<Rekapitulasi,Long>
     public List<Rekapitulasi>findRekapitulasiByAktorAndWaktuKegiatanThisMonth(@Param("waktu")String waktu,@Param("id")long id);
     @Query(value = "select * from rekapitulasi a join waktu_kegiatan b on a.waktu_kegiatan_id = b.id where b.waktu_rekapitulasi <:waktu and a.aktor_id =:id",nativeQuery = true)
     public List<Rekapitulasi>findRekapitulasiByAktorAndWaktuKegiatanLastMonth(@Param("waktu")String waktu,@Param("id")long id);
+    @Query(value = "select a.id from Rekapitulasi  a where a.id =:id and a.status='Proses'")
+    public Rekapitulasi findByIdAndStatus(@Param("id") long id);
 }

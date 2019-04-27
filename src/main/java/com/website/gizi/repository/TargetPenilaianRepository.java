@@ -18,4 +18,7 @@ public interface TargetPenilaianRepository extends JpaRepository<TargetPenilaian
 
     @Query(value = "select * from target_penilaian a where a.rekapitulasi_id =:idr AND a.vol_target!=0 AND a.nilai_target!=0 AND a.skor_target!=0 ", nativeQuery = true)
     public List<TargetPenilaian> findAllByKegiatanAndRekapitulasiWithinNOTNULL(@Param("idr") long idr);
+
+    @Query(value = "select a from TargetPenilaian a where a.rekapitulasi =:id and a.status='Proses'")
+    public List<TargetPenilaian>findAllByRekapitulasi(@Param("id")long id);
 }
