@@ -38,7 +38,7 @@
                                 <div class="box-body">
                                     <form method="POST" action="rekapitulasinilaisetproses" enctype="multipart/form-data">
                                         <input type="hidden" th:name="id" th:value="${targetNilaiSet.id}" >
-                                        <!--<input type="hidden" th:name="idr" th:value="${rekapitulasi.id}" >-->
+                                        <input type="hidden" th:name="idr" th:value="${rekapitulasi.id}" >
                                         <div class="form-group text-center">
                                             <label>Skor Target</label>
                                             <input type="number" class="form-control" name="skorTarget" placeholder="Skor Target">

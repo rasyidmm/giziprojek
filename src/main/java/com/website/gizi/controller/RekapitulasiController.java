@@ -9,8 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 
 @Controller
 public class RekapitulasiController {
@@ -96,6 +99,18 @@ public class RekapitulasiController {
         mav.addObject("idr",idr);
         mav.addObject("ida",ida);
         mav.setViewName("redirect:rekapitulasikegiatanset");
+        return mav;
+    }
+
+    @RequestMapping(value = "/asdasd")
+    public ModelAndView rekapitulasiFromAktor(@Param("id")long id) throws ParseException {
+        String Date = date("MM-yyyy");
+        ModelAndView mav =  new ModelAndView();
+        mav.addObject("aktorpilih",aktorServices.getAktorById(id));
+        mav.addObject("rekapitulasiThisMonth",rekapitulasiServices.findRekapitulasiByAktorAndWaktuKegiatanThisMonth(Date,id));
+        mav.addObject("rekapitulasiLastMonth",rekapitulasiServices.findRekapitulasiByAktorAndWaktuKegiatanLastMonth(Date,id));
+        mav.setViewName("user/rekapitulasi/halamanRekapitulasi");
+        System.out.printf(Date);
         return mav;
     }
 

@@ -26,25 +26,30 @@
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <div class="col-md-12 text-center">
-                            <h3 class="box-title">Waktu Rekapitulasi</h3>
+                            <h3 class="box-title">Mengatur Kegiatan</h3>
+                            </br>
+                            <h3 class="box-title" th:text="${targetpenilaianid.kegiatan.namaKegiatan}"></h3>
+                            <!--</br>-->
+                            <h3 class="box-title" th:text="${targetpenilaianid.rekapitulasi.namaRekapitulasi}"></h3>
                         </div>
                         <div class="col-md-12">
                             <div class="col-md-3"></div>
                             <div class="col-md-6">
                                 <div class="box-body">
-                                    <form method="POST" action="rekapitulasiwaktuset" enctype="multipart/form-data">
-                                        <!--<div class="form-group text-center">-->
-                                        <!--<label>Nama Kegiatan</label>-->
-                                        <!--<input type="text" class="form-control" name="namaKegiatan" placeholder="Nama Kegiatan">-->
-                                        <!--</div>-->
+                                    <form method="POST" action="rekapitulasinilaisetproses" enctype="multipart/form-data">
+                                        <input type="hidden" th:name="id" th:value="${targetpenilaianid.id}" >
+                                        <input type="hidden" th:name="idr" th:value="${targetpenilaianid.rekapitulasi.id}" >
                                         <div class="form-group text-center">
-                                            <!--<label>Tanggal Kegiatan</label>-->
-                                            <div class="input-group date">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                                <input type="text" class="form-control pull-right" name="waktuRekapitulasii" readonly id="datepicker" data-date-format="mm-yyyy" data-date-viewmode="years" data-date-minviewmode="months">
-                                            </div>
+                                            <label>Skor Target</label>
+                                            <input type="number" class="form-control" name="skorTarget" th:value="${targetpenilaianid.skorTarget}" placeholder="Skor Target">
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <label>Volume Target</label>
+                                            <input type="number" class="form-control" name="volTarget" th:value="${targetpenilaianid.volTarget}" placeholder="Volume Target">
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <label>Nilai Target</label>
+                                            <input type="number" class="form-control" name="nilaiTarget" th:value="${targetpenilaianid.nilaiTarget}" placeholder="Nilai Target">
                                         </div>
                                         <button type="submit" class="butongizi  text-center">Submit</button>
                                     </form>

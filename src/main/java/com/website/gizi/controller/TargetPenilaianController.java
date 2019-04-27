@@ -49,4 +49,9 @@ public class TargetPenilaianController {
         targetPenilaianServices.SaveOrUpdateTargetPenilaian(tr);
         return "redirect:rekapitulasikegiatanterpilih?idr="+idr;
     }
+
+    @RequestMapping(value = "/updatetargetnilai")
+    public ModelAndView updatetargetnailai(@Param("id")long id){
+        return new ModelAndView("targetpenilaian/halamanTargetPenilaianUpdate","targetpenilaianid",targetPenilaianServices.getTargetPenilaianById(id));
+    }
 }

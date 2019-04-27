@@ -45,4 +45,11 @@ public class RekapitulasiServices implements RekapitulasiDao {
     public Rekapitulasi findRekapitulasiByAktorAndWaktuKegiatan(long ida,long idwk){
         return rekapitulasiRepository.findRekapitulasiByAktorAndWaktuKegiatan(ida,idwk);
     }
+    public List<Rekapitulasi>findRekapitulasiByAktorAndWaktuKegiatanThisMonth(String waktu,long id){
+        return rekapitulasiRepository.findRekapitulasiByAktorAndWaktuKegiatanThisMonth(waktu,id);
+    }
+    public List<Rekapitulasi>findRekapitulasiByAktorAndWaktuKegiatanLastMonth(String waktu,long id){
+        return rekapitulasiRepository.findRekapitulasiByAktorAndWaktuKegiatanLastMonth(waktu,id);
+    }
+
 }

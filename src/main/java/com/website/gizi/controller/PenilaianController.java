@@ -14,5 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class PenilaianController {
-
+    @RequestMapping(value = "/menilai")
+    public ModelAndView Menilai(@Param("ida")long ida){
+        return new ModelAndView();
+    }
 }
