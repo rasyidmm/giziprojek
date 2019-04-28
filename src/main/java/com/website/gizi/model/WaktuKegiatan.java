@@ -8,7 +8,6 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- *
  * @author rasyid
  */
 @Entity
@@ -60,7 +59,6 @@ public class WaktuKegiatan extends Additional implements Serializable {
     public String toString() {
         return "model.WaktuKegiatan[ id=" + getId() + " ]";
     }
-
 
 
     public List<Rekapitulasi> getRekapitulasis() {

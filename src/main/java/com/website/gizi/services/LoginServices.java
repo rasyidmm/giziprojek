@@ -14,9 +14,10 @@ import java.util.List;
 public class LoginServices implements LoginDao {
     @Autowired
     LoginRepository loginRepository;
+
     @Override
     public List<Login> getAllLogin() {
-        List<Login>ll = new ArrayList<>();
+        List<Login> ll = new ArrayList<>();
         loginRepository.findAll().forEach(ll::add);
         return ll;
     }
@@ -43,17 +44,20 @@ public class LoginServices implements LoginDao {
         loginRepository.delete(a);
     }
 
-    public Login findByUsernameAktor(String usernameAktor){
-        return    loginRepository.findByUsernameAktor(usernameAktor);
+    public Login findByUsernameAktor(String usernameAktor) {
+        return loginRepository.findByUsernameAktor(usernameAktor);
     }
-    public Login findSummember (@Param("roleName") String roleName){
-        return  loginRepository.findSummember(roleName);
+
+    public Login findSummember(@Param("roleName") String roleName) {
+        return loginRepository.findSummember(roleName);
     }
-    public Login findPasswordByid(long id){
+
+    public Login findPasswordByid(long id) {
         return loginRepository.findPasswordByid(id);
     }
-    public List<Login>cekPassowwrdAndAktor_Id(Long id,String password){
-        return loginRepository.cekPassowwrdAndAktor_Id(id,password);
+
+    public List<Login> cekPassowwrdAndAktor_Id(Long id, String password) {
+        return loginRepository.cekPassowwrdAndAktor_Id(id, password);
     }
 
 }

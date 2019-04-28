@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class WaktuKegiatanServices implements WaktuKegiatanDao {
     @Autowired
@@ -15,10 +16,10 @@ public class WaktuKegiatanServices implements WaktuKegiatanDao {
 
     @Override
     public List<WaktuKegiatan> getAllWaktuKegiatan() {
-        List<WaktuKegiatan> wkl =  new ArrayList<>();
+        List<WaktuKegiatan> wkl = new ArrayList<>();
         waktuKegiatanRepository.findAll().forEach(wkl::add);
         return wkl;
-        }
+    }
 
     @Override
     public WaktuKegiatan getWaktuKegiatanById(long id) {
@@ -41,7 +42,9 @@ public class WaktuKegiatanServices implements WaktuKegiatanDao {
         waktuKegiatanRepository.delete(a);
     }
 
-    public List<WaktuKegiatan> findWaktuKegiatanByWakturekapitulasi(String waktu){
+    public List<WaktuKegiatan> findWaktuKegiatanByWakturekapitulasi(String waktu) {
         return waktuKegiatanRepository.findWaktuKegiatanByWakturekapitulasi(waktu);
-    };
+    }
+
+    ;
 }

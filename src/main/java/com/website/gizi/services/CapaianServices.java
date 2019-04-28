@@ -13,6 +13,7 @@ import java.util.List;
 public class CapaianServices implements CapaianDao {
     @Autowired
     CapaianRepository capaianRepository;
+
     @Override
     public List<Capaian> getAllCapaian() {
         List<Capaian> cl = new ArrayList<>();

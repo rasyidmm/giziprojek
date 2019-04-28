@@ -13,6 +13,7 @@ import java.util.List;
 public class RoleServices implements RoleDao {
     @Autowired
     RoleRepository roleRepository;
+
     @Override
     public List<Role> getAllRole() {
         List<Role> rl = new ArrayList<>();

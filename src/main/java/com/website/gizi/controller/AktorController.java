@@ -55,6 +55,8 @@ public class AktorController {
     @RequestMapping(value = "/memberupdate", method = RequestMethod.POST)
     public String memberupdate(@ModelAttribute("Aktor") Aktor a, @ModelAttribute("Login") Login l, @RequestParam("id") long id, @RequestParam("idlg") long idlg) {
         a.setId(id);
+        a.setStatus("Active");
+        a.setUpdateDate(new Date());
         a.setLogin(loginServices.getLoginById(idlg));
         aktorServices.UpdateAktorMandiri(a);
         return "redirect:member";

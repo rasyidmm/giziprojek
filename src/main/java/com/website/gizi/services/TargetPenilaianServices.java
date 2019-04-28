@@ -16,7 +16,7 @@ public class TargetPenilaianServices implements TargetPenilaianDao {
 
     @Override
     public List<TargetPenilaian> getAllTargetPenilaian() {
-        List<TargetPenilaian>tpl =  new ArrayList<>();
+        List<TargetPenilaian> tpl = new ArrayList<>();
         targetPenilaianRepository.findAll().forEach(tpl::add);
         return tpl;
     }
@@ -41,17 +41,29 @@ public class TargetPenilaianServices implements TargetPenilaianDao {
     public void deleteTargetPenilaian(TargetPenilaian a) {
         targetPenilaianRepository.save(a);
     }
-    public List<TargetPenilaian> findKegiatanByTargetPenilaian(long idr){
-       return targetPenilaianRepository.findKegiatanByTargetPenilaian(idr);
-    };
-    public List<TargetPenilaian>findAllByKegiatanAndRekapitulasiWithinNULL(long idr){
+
+    public List<TargetPenilaian> findKegiatanByTargetPenilaian(long idr) {
+        return targetPenilaianRepository.findKegiatanByTargetPenilaian(idr);
+    }
+
+    ;
+
+    public List<TargetPenilaian> findAllByKegiatanAndRekapitulasiWithinNULL(long idr) {
         return targetPenilaianRepository.findAllByKegiatanAndRekapitulasiWithinNULL(idr);
-    };
-    public List<TargetPenilaian>findAllByKegiatanAndRekapitulasiWithinNOTNULL(long idr){
+    }
+
+    ;
+
+    public List<TargetPenilaian> findAllByKegiatanAndRekapitulasiWithinNOTNULL(long idr) {
         return targetPenilaianRepository.findAllByKegiatanAndRekapitulasiWithinNOTNULL(idr);
-    };
-     public List<TargetPenilaian>findAllByRekapitulasi(long id){
-         return targetPenilaianRepository.findAllByRekapitulasi(id);
-     };
+    }
+
+    ;
+
+    public List<TargetPenilaian> findAllByRekapitulasi(long id) {
+        return targetPenilaianRepository.findAllByRekapitulasi(id);
+    }
+
+    ;
 
 }

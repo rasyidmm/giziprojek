@@ -13,6 +13,7 @@ import java.util.List;
 public class KegiatanServices implements KegiatanDao {
     @Autowired
     KegiatanRepository kegiatanRepository;
+
     @Override
     public List<Kegiatan> getAllKegiatan() {
         List<Kegiatan> kl = new ArrayList<>();
@@ -22,7 +23,7 @@ public class KegiatanServices implements KegiatanDao {
 
     @Override
     public Kegiatan getKegiatanById(long id) {
-        Kegiatan k =kegiatanRepository.findById(id).get();
+        Kegiatan k = kegiatanRepository.findById(id).get();
         return k;
     }
 
@@ -41,20 +42,30 @@ public class KegiatanServices implements KegiatanDao {
         kegiatanRepository.delete(a);
     }
 
-    public List<Kegiatan> findKegiatanByRekapitulasiID(long id){
+    public List<Kegiatan> findKegiatanByRekapitulasiID(long id) {
         return kegiatanRepository.findKegiatanByRekapitulasiID(id);
-    };
-    public List<Kegiatan> findKegiatanNONByRekapitulasiID(String waktu,long ida){
-        return kegiatanRepository.findKegiatanNONByRekapitulasiID(waktu,ida);
-    };
+    }
 
-    public List<Kegiatan>findKegiatanNONByTargetPenilaian(long idr){
+
+    public List<Kegiatan> findKegiatanNONByRekapitulasiID(String waktu, long ida) {
+        return kegiatanRepository.findKegiatanNONByRekapitulasiID(waktu, ida);
+    }
+
+    ;
+
+    public List<Kegiatan> findKegiatanNONByTargetPenilaian(long idr) {
         return kegiatanRepository.findKegiatanNONByTargetPenilaian(idr);
-    };
-    public List<Kegiatan>findKegiatanByStatusActive(){
+    }
+
+
+    public List<Kegiatan> findKegiatanByStatusActive() {
         return kegiatanRepository.findKegiatanByStatusActive();
-    };
-    public List<Kegiatan>findKegiatanByStatusDeleted(){
+    }
+
+
+    public List<Kegiatan> findKegiatanByStatusDeleted() {
         return kegiatanRepository.findKegiatanByStatusDeleted();
-    };
+    }
+
+
 }

@@ -13,14 +13,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
- *
  * @author rasyid
  */
 @Entity
 public class Aktor extends Additional implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "aktor")
-    private List<Kegiatan>kegiatans;
+    private List<Kegiatan> kegiatans;
     @JsonIgnore
     @OneToMany(mappedBy = "aktor")
     private List<Rekapitulasi> rekapitulasis;

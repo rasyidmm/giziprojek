@@ -8,18 +8,17 @@ import java.util.Set;
 import javax.persistence.*;
 
 /**
- *
  * @author rasyid
  */
 @Entity
 public class Rekapitulasi extends Additional implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "rekapitulasi")
-    private List<Penilaian>penilaians;
+    private List<Penilaian> penilaians;
 
     @JsonIgnore
     @OneToMany(mappedBy = "rekapitulasi")
-    private List<KegiatanRekapitulasi>kegiatanRekapitulasis;
+    private List<KegiatanRekapitulasi> kegiatanRekapitulasis;
 
     @JsonIgnore
     @OneToMany(mappedBy = "rekapitulasi")
@@ -37,6 +36,7 @@ public class Rekapitulasi extends Additional implements Serializable {
     @ManyToOne
     private
     WaktuKegiatan waktuKegiatan;
+
     public Long getId() {
         return id;
     }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface WaktuKegiatanRepository extends JpaRepository<WaktuKegiatan,Long> {
+public interface WaktuKegiatanRepository extends JpaRepository<WaktuKegiatan, Long> {
     @Query(value = "select a.waktuRekapitulasi from WaktuKegiatan a where a.waktuRekapitulasi =:waktu ")
-   List<WaktuKegiatan> findWaktuKegiatanByWakturekapitulasi(@Param("waktu")String waktu);
+    List<WaktuKegiatan> findWaktuKegiatanByWakturekapitulasi(@Param("waktu") String waktu);
 }

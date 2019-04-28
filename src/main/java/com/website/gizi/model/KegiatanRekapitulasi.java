@@ -3,6 +3,7 @@ package com.website.gizi.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import javax.persistence.Transient;
+
 @Entity
 public class KegiatanRekapitulasi extends Additional implements Serializable {
 

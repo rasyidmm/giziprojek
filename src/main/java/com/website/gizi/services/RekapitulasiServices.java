@@ -17,7 +17,7 @@ public class RekapitulasiServices implements RekapitulasiDao {
 
     @Override
     public List<Rekapitulasi> getAllRekapitulasi() {
-        List<Rekapitulasi> rl =  new ArrayList<>();
+        List<Rekapitulasi> rl = new ArrayList<>();
         rekapitulasiRepository.findAll().forEach(rl::add);
         return rl;
     }
@@ -43,34 +43,51 @@ public class RekapitulasiServices implements RekapitulasiDao {
         rekapitulasiRepository.delete(a);
     }
 
-    public Rekapitulasi findRekapitulasiByAktorAndWaktuKegiatan(long ida,long idwk){
-        return rekapitulasiRepository.findRekapitulasiByAktorAndWaktuKegiatan(ida,idwk);
+    public Rekapitulasi findRekapitulasiByAktorAndWaktuKegiatan(long ida, long idwk) {
+        return rekapitulasiRepository.findRekapitulasiByAktorAndWaktuKegiatan(ida, idwk);
     }
-    public List<Rekapitulasi>findRekapitulasiByAktorAndWaktuKegiatanThisMonth(String waktu,long id){
-        return rekapitulasiRepository.findRekapitulasiByAktorAndWaktuKegiatanThisMonth(waktu,id);
+
+    public List<Rekapitulasi> findRekapitulasiByAktorAndWaktuKegiatanThisMonth(String waktu, long id) {
+        return rekapitulasiRepository.findRekapitulasiByAktorAndWaktuKegiatanThisMonth(waktu, id);
     }
-    public List<Rekapitulasi>findRekapitulasiByAktorAndWaktuKegiatanLastMonth(String waktu,long id){
-        return rekapitulasiRepository.findRekapitulasiByAktorAndWaktuKegiatanLastMonth(waktu,id);
+
+    public List<Rekapitulasi> findRekapitulasiByAktorAndWaktuKegiatanLastMonth(String waktu, long id) {
+        return rekapitulasiRepository.findRekapitulasiByAktorAndWaktuKegiatanLastMonth(waktu, id);
     }
-    public Rekapitulasi findByIdAndStatus(long id){
+
+    public Rekapitulasi findByIdAndStatus(long id) {
         return rekapitulasiRepository.findByIdAndStatus(id);
     }
-    public List<Rekapitulasi> findByStatusPembuatan(){
+
+    public List<Rekapitulasi> findByStatusPembuatan() {
         return rekapitulasiRepository.findByStatusPembuatan();
-    };
-    public List<Rekapitulasi> findByStatusMenunggu(){
+    }
+
+    ;
+
+    public List<Rekapitulasi> findByStatusMenunggu() {
         return rekapitulasiRepository.findByStatusMenunggu();
-    };
-    public List<Rekapitulasi> findByStatusSelesai(){
+    }
+
+    ;
+
+    public List<Rekapitulasi> findByStatusSelesai() {
         return rekapitulasiRepository.findByStatusSelesai();
-    };
-    public List<Rekapitulasi> findByStatusProse(){
+    }
+
+    ;
+
+    public List<Rekapitulasi> findByStatusProse() {
         return rekapitulasiRepository.findByStatusProse();
-    };
-    public List<Rekapitulasi> findByStatusMenunggAndDateSameNow( String waktu){
+    }
+
+    ;
+
+    public List<Rekapitulasi> findByStatusMenunggAndDateSameNow(String waktu) {
         return rekapitulasiRepository.findByStatusMenunggAndDateSameNow(waktu);
     }
-    public List<Rekapitulasi> findByStatusProsesAndDateKurangNow(String waktu){
+
+    public List<Rekapitulasi> findByStatusProsesAndDateKurangNow(String waktu) {
         return rekapitulasiRepository.findByStatusProsesAndDateKurangNow(waktu);
     }
 }

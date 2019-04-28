@@ -10,7 +10,6 @@ import javax.persistence.*;
 import javax.persistence.Transient;
 
 /**
- *
  * @author rasyid
  */
 @Entity
@@ -101,7 +100,6 @@ public class Kegiatan extends Additional implements Serializable {
      */
 
 
-
     /**
      * @return the aktor
      */
@@ -123,7 +121,6 @@ public class Kegiatan extends Additional implements Serializable {
     public void setTanggalKegiatan(String tanggalKegiatan) {
         this.tanggalKegiatan = tanggalKegiatan;
     }
-
 
 
     public Set<Penilaian> getPenilaians() {

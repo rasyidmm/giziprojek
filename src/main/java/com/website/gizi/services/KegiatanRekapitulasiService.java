@@ -13,6 +13,7 @@ import java.util.List;
 public class KegiatanRekapitulasiService implements KegiatanRekapitulasiDao {
     @Autowired
     KegiatanRekapitulasiRepository kegiatanRekapitulasiRepository;
+
     @Override
     public List<KegiatanRekapitulasi> getAllKegiatanRekapitulasi() {
         List<KegiatanRekapitulasi> krl = new ArrayList<>();
@@ -40,7 +41,8 @@ public class KegiatanRekapitulasiService implements KegiatanRekapitulasiDao {
     public void deleteKegiatanRekapitulasi(KegiatanRekapitulasi a) {
         kegiatanRekapitulasiRepository.delete(a);
     }
-    public List<KegiatanRekapitulasi> findAllByRekapitulasi(long id){
+
+    public List<KegiatanRekapitulasi> findAllByRekapitulasi(long id) {
         return kegiatanRekapitulasiRepository.findAllByRekapitulasi(id);
     }
 }

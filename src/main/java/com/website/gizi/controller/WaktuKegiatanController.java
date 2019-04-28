@@ -23,17 +23,19 @@ public class WaktuKegiatanController {
     RekapitulasiServices rekapitulasimemberset;
 
     @RequestMapping(value = "/rekapitulasiwaktu")
-    public ModelAndView rekapitulasiwaktu(){
-        return new ModelAndView("waktukegiatan/halamanWaktuKegiatan","waktukegiatanlist",waktuKegiatanServices.getAllWaktuKegiatan());
+    public ModelAndView rekapitulasiwaktu() {
+        return new ModelAndView("waktukegiatan/halamanWaktuKegiatan", "waktukegiatanlist", waktuKegiatanServices.getAllWaktuKegiatan());
     }
+
     @RequestMapping(value = "/rekapitulasiwaktuset")
-    public String rekapitulasiWaktuSet(){
+    public String rekapitulasiWaktuSet() {
         return "waktukegiatan/halamanWaktuKegiatanSet";
     }
-    @RequestMapping(value = "/rekapitulasiwaktuset",method = RequestMethod.POST)
-    public String rekapitulasiWaktuproses(@ModelAttribute("WaktuKegiatan") WaktuKegiatan waktuKegiatan, @Param("waktuRekapitulasii")String waktuRekapitulasii){
+
+    @RequestMapping(value = "/rekapitulasiwaktuset", method = RequestMethod.POST)
+    public String rekapitulasiWaktuproses(@ModelAttribute("WaktuKegiatan") WaktuKegiatan waktuKegiatan, @Param("waktuRekapitulasii") String waktuRekapitulasii) {
         List<WaktuKegiatan> dsfsdfds = waktuKegiatanServices.findWaktuKegiatanByWakturekapitulasi(waktuRekapitulasii);
-        if(0 == dsfsdfds.size()){
+        if (0 == dsfsdfds.size()) {
             waktuKegiatan.setWaktuRekapitulasi(waktuRekapitulasii);
             waktuKegiatanServices.SaveOrUpdateWaktuKegiatan(waktuKegiatan);
         }
@@ -41,7 +43,7 @@ public class WaktuKegiatanController {
     }
 
     @RequestMapping(value = "/rekapitulasiwaktudetail")
-    public ModelAndView rekapitulasimemberSet(@Param("id")long id){
+    public ModelAndView rekapitulasimemberSet(@Param("id") long id) {
         ModelAndView mav = new ModelAndView();
         mav.addObject("rekapitulasidetail", waktuKegiatanServices.getWaktuKegiatanById(id));
         mav.setViewName("waktukegiatan/halamanWaktuKegiatanDetail");

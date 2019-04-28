@@ -18,6 +18,7 @@ public class AktorServices implements AktorDao {
     AktorRepository aktorRepository;
     @Autowired
     LoginRepository loginRepository;
+
     @Override
     public List<Aktor> getAllAktor() {
         List<Aktor> al = new ArrayList<>();
@@ -34,12 +35,12 @@ public class AktorServices implements AktorDao {
 
     @Override
     public void SaveOrUpdateAktor(Aktor a, Login l) {
-        try{
+        try {
             l = loginRepository.save(l);
             a.setLogin(l);
             aktorRepository.save(a);
-        }catch (Exception e){
-            System.out.println("Erornya karna : " +e);
+        } catch (Exception e) {
+            System.out.println("Erornya karna : " + e);
         }
     }
 
@@ -58,12 +59,19 @@ public class AktorServices implements AktorDao {
         aktorRepository.delete(a);
     }
 
-    public List<Aktor> findAktorByWaktu(long id){
-      return aktorRepository.findAktorByWaktu(id);
-    };
-    public List<Aktor>findAllByDeleted() { return aktorRepository.findAllByDeleted();
-    };
-    public List<Aktor>findAllByActive(){
-       return aktorRepository.findAllByActive();
+    public List<Aktor> findAktorByWaktu(long id) {
+        return aktorRepository.findAktorByWaktu(id);
+    }
+
+    ;
+
+    public List<Aktor> findAllByDeleted() {
+        return aktorRepository.findAllByDeleted();
+    }
+
+    ;
+
+    public List<Aktor> findAllByActive() {
+        return aktorRepository.findAllByActive();
     }
 }

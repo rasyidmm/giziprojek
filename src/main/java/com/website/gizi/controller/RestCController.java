@@ -19,8 +19,9 @@ public class RestCController {
     WaktuKegiatanServices waktuKegiatanServices;
     @Autowired
     AktorServices aktorServices;
+
     @RequestMapping(value = "/getwakturest")
-    public String waktuKegiatans(@Param("id")long id,@Param("ids")long ids){
+    public String waktuKegiatans(@Param("id") long id, @Param("ids") long ids) {
         Aktor a = aktorServices.getAktorById(id);
         WaktuKegiatan wk = waktuKegiatanServices.getWaktuKegiatanById(ids);
         return String.valueOf(wk.getWaktuRekapitulasi().concat(a.getNamaAkhir()));

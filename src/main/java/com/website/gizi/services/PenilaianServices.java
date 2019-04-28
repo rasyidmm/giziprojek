@@ -13,9 +13,10 @@ import java.util.List;
 public class PenilaianServices implements PenilaianDao {
     @Autowired
     PenilaianRepository penilaianRepository;
+
     @Override
     public List<Penilaian> getAllPenilaian() {
-        List<Penilaian> pl =  new ArrayList<>();
+        List<Penilaian> pl = new ArrayList<>();
         penilaianRepository.findAll().forEach(pl::add);
         return pl;
     }

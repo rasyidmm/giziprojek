@@ -6,7 +6,6 @@ import java.util.Date;
 import javax.persistence.*;
 
 /**
- *
  * @author rasyid
  */
 @Entity
