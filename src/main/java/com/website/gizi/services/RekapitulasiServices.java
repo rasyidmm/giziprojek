@@ -4,6 +4,7 @@ import com.website.gizi.dao.RekapitulasiDao;
 import com.website.gizi.model.Rekapitulasi;
 import com.website.gizi.repository.RekapitulasiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -53,5 +54,23 @@ public class RekapitulasiServices implements RekapitulasiDao {
     }
     public Rekapitulasi findByIdAndStatus(long id){
         return rekapitulasiRepository.findByIdAndStatus(id);
+    }
+    public List<Rekapitulasi> findByStatusPembuatan(){
+        return rekapitulasiRepository.findByStatusPembuatan();
+    };
+    public List<Rekapitulasi> findByStatusMenunggu(){
+        return rekapitulasiRepository.findByStatusMenunggu();
+    };
+    public List<Rekapitulasi> findByStatusSelesai(){
+        return rekapitulasiRepository.findByStatusSelesai();
+    };
+    public List<Rekapitulasi> findByStatusProse(){
+        return rekapitulasiRepository.findByStatusProse();
+    };
+    public List<Rekapitulasi> findByStatusMenunggAndDateSameNow( String waktu){
+        return rekapitulasiRepository.findByStatusMenunggAndDateSameNow(waktu);
+    }
+    public List<Rekapitulasi> findByStatusProsesAndDateKurangNow(String waktu){
+        return rekapitulasiRepository.findByStatusProsesAndDateKurangNow(waktu);
     }
 }

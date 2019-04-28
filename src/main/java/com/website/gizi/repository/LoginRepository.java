@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface LoginRepository extends JpaRepository<Login,Long> {
     @Query(value = "select a.usernameAktor from Login a where a.usernameAktor =:usernameAktor")
@@ -14,4 +16,6 @@ public interface LoginRepository extends JpaRepository<Login,Long> {
     public Login findSummember(@Param("roleName") String roleName);
     @Query(value = "select a.passwordAktor from Login a where a.id =:id")
     public Login findPasswordByid(@Param("id")long id);
+    @Query(value = "select * from login b where b.id =:id and b.password_aktor =:password",nativeQuery = true)
+    public List<Login>cekPassowwrdAndAktor_Id(@Param("id")Long id,@Param("password")String password);
 }

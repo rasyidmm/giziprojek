@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
+
 @Controller
 public class KegiatanController {
 
@@ -22,7 +24,7 @@ public class KegiatanController {
     AktorServices aktorServices;
     @RequestMapping(value = "/kegiatan")
     public ModelAndView kegiatan(){
-        return new ModelAndView("kegiatan/halamanKegiatan","kegiatanlist",kegiatanServices.getAllKegiatan());
+        return new ModelAndView("kegiatan/halamanKegiatan","kegiatanlist",kegiatanServices.findKegiatanByStatusActive());
     }
     @RequestMapping(value = "/tambahkegiatan")
     public ModelAndView tambahkegiatan(){
@@ -33,6 +35,8 @@ public class KegiatanController {
     @RequestMapping(value = "/tambahkegiatan",method = RequestMethod.POST)
     public String tambahKegiatanProses(@ModelAttribute("Kegiatan")Kegiatan kegiatan, @Param("Anggotaid")long Anggotaid){
         kegiatan.setAktor(aktorServices.getAktorById(Anggotaid));
+        kegiatan.setCreateDate(new Date());
+        kegiatan.setStatus("Active");
         kegiatanServices.SaveOrUpdateKegiatan(kegiatan);
         return "redirect:kegiatan";
     }
@@ -47,6 +51,7 @@ public class KegiatanController {
     }
     @RequestMapping(value = "/updatekegiatan",method = RequestMethod.POST)
     public String updateKegiatanProses(@ModelAttribute("Kegiatan")Kegiatan kegiatan){
+        kegiatan.setUpdateDate(new Date());
         kegiatanServices.SaveOrUpdateKegiatan(kegiatan);
         return "redirect:kegiatan";
     }
@@ -58,6 +63,14 @@ public class KegiatanController {
     @RequestMapping(value = "/kegiatanhapus")
     public String kegeiatanHapus(@RequestParam("id")long id){
         kegiatanServices.deleteKegiatanById(id);
+        return "redirect:kegiatan";
+    }
+    @RequestMapping(value = "/kegiatanhapusStatus")
+    public String kegiatanHapusStatus(@RequestParam("id")long id){
+        Kegiatan kid  =  kegiatanServices.getKegiatanById(id);
+        kid.setUpdateDate(new Date());
+        kid.setStatus("Delete");
+        kegiatanServices.SaveOrUpdateKegiatan(kid);
         return "redirect:kegiatan";
     }
 }

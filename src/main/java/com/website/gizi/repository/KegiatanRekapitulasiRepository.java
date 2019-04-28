@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface KegiatanRekapitulasiRepository extends JpaRepository<KegiatanRekapitulasi,Long> {
-    @Query(value = "select a from KegiatanRekapitulasi a where a.rekapitulasi =:id and a.status='Proses'")
+    @Query(value = "select * from kegiatan_rekapitulasi a where a.rekapitulasi_id =:id and a.status='Proses'",nativeQuery = true)
     public List<KegiatanRekapitulasi> findAllByRekapitulasi(@Param("id")long id);
 }

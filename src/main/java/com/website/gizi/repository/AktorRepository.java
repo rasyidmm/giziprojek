@@ -10,7 +10,10 @@ import java.util.List;
 
 @Repository
 public interface AktorRepository extends JpaRepository<Aktor, Long> {
-    @Query(value = "SELECT * FROM aktor a LEFT JOIN rekapitulasi b ON a.id = b.aktor_id  WHERE b.waktu_kegiatan_id =:id is null ",nativeQuery = true)
+    @Query(value = "SELECT * FROM aktor a LEFT JOIN rekapitulasi b ON a.id = b.aktor_id  WHERE b.waktu_kegiatan_id =:id is null AND a.status = 'Active' ",nativeQuery = true)
     public List<Aktor> findAktorByWaktu(@Param("id")long id);
-
+    @Query(value = "select * from aktor d where d.status = 'Active'",nativeQuery = true)
+    public List<Aktor>findAllByActive();
+    @Query(value = "select * from aktor d where d.status = 'Deletes'",nativeQuery = true)
+    public List<Aktor>findAllByDeleted();
 }

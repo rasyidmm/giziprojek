@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
+
 @Controller
 public class AktorController {
 
@@ -19,66 +21,75 @@ public class AktorController {
     LoginServices loginServices;
     @Autowired
     RoleServices roleServices;
+
     @RequestMapping(value = "/member")
-    public ModelAndView halamanMember(){
-        return new ModelAndView("member/halamanMember","memberlist",aktorServices.getAllAktor());
+    public ModelAndView halamanMember() {
+        return new ModelAndView("member/halamanMember", "memberlist", aktorServices.findAllByActive());
     }
+
     @RequestMapping(value = "/membertambah")
-    public String halamanMemberTambah(){
+    public String halamanMemberTambah() {
         return "member/halamanMemberTambah";
     }
-    @RequestMapping(value = "/membertambah",method = RequestMethod.POST)
-    public String membertambah(@ModelAttribute("Aktor")Aktor a,@ModelAttribute("Login")Login l){
-        aktorServices.SaveOrUpdateAktor(a,l);
+
+    @RequestMapping(value = "/membertambah", method = RequestMethod.POST)
+    public String membertambah(@ModelAttribute("Aktor") Aktor a, @ModelAttribute("Login") Login l) {
+        a.setStatus("Active");
+        a.setCreateDate(new Date());
+        l.setStatus("Active");
+        l.setCreateDate(new Date());
+        aktorServices.SaveOrUpdateAktor(a, l);
         return "redirect:member";
     }
+
     @RequestMapping(value = "/memberdetail")
-    public ModelAndView halamanMemberDetail(@RequestParam("id")long id){
-        return new ModelAndView("member/halamanMemberDetail","memberdetail",aktorServices.getAktorById(id));
+    public ModelAndView halamanMemberDetail(@RequestParam("id") long id) {
+        return new ModelAndView("member/halamanMemberDetail", "memberdetail", aktorServices.getAktorById(id));
     }
-    @RequestMapping(value ="/memberupdate",method = RequestMethod.GET)
-    public ModelAndView halamanMemberUpdate(@RequestParam("id")long id){
-        return new ModelAndView("member/halamanMemberUpdate","memberupdate",aktorServices.getAktorById(id));
+
+    @RequestMapping(value = "/memberupdate", method = RequestMethod.GET)
+    public ModelAndView halamanMemberUpdate(@RequestParam("id") long id) {
+        return new ModelAndView("member/halamanMemberUpdate", "memberupdate", aktorServices.getAktorById(id));
     }
-    @RequestMapping(value = "/memberupdate",method =  RequestMethod.POST)
-    public String memberupdate(@ModelAttribute("Aktor")Aktor a,@ModelAttribute("Login")Login l,@RequestParam("id")long id,@RequestParam("idlg")long idlg){
+
+    @RequestMapping(value = "/memberupdate", method = RequestMethod.POST)
+    public String memberupdate(@ModelAttribute("Aktor") Aktor a, @ModelAttribute("Login") Login l, @RequestParam("id") long id, @RequestParam("idlg") long idlg) {
         a.setId(id);
         a.setLogin(loginServices.getLoginById(idlg));
         aktorServices.UpdateAktorMandiri(a);
         return "redirect:member";
     }
+
     @RequestMapping(value = "/memberdelete")
-    public String memberDelete(@RequestParam("id")long id,@RequestParam("idlg")long idlg){
+    public String memberDelete(@RequestParam("id") long id, @RequestParam("idlg") long idlg) {
         try {
             aktorServices.deleteAktorById(id);
             loginServices.deleteLoginById(idlg);
-        }catch (Exception e){
-            System.out.println("Erornya karna : " +e);
+        } catch (Exception e) {
+            System.out.println("Erornya karna : " + e);
         }
         return "redirect:member";
     }
 
     @RequestMapping(value = "/memberupdatelogin")
-    public ModelAndView memberupdatelogin(@RequestParam("id")long id){
-        return new ModelAndView("member/halamanMemberPasswordChecker","memberupdatelogin",loginServices.getLoginById(id));
+    public ModelAndView memberupdatelogin(@RequestParam("id") long id) {
+        return new ModelAndView("member/halamanMemberPasswordChecker", "memberupdatelogin", loginServices.getLoginById(id));
     }
 
     @RequestMapping(value = "/cekpassword")
-    public ModelAndView cekpassword(@RequestParam("id")long id,@RequestParam("password")String password){
-        Login login = loginServices.getLoginById(id);
-        String getpasswrddb = login.getPasswordAktor();
-        System.out.println(login.getPasswordAktor());
-        System.out.println(password);
-        if (password.toUpperCase().toString() == getpasswrddb.toUpperCase().toString()) {
-            return new ModelAndView("member/halamanMemberDetail","memberdetail",aktorServices.getAktorById(id));
-//            return new ModelAndView("member/halamanMemberPassword","passwordsiapupdate",loginServices.getLoginById(id));
-        }else {
-            return new ModelAndView("member/halamanMemberPassword","passwordsiapupdate",loginServices.getLoginById(id));
+    public ModelAndView cekpassword(@RequestParam("id") long id, @RequestParam("password") String password) {
+        int size = loginServices.cekPassowwrdAndAktor_Id(id, password).size();
+        if (size > 0) {
 //            return new ModelAndView("member/halamanMemberDetail","memberdetail",aktorServices.getAktorById(id));
+            return new ModelAndView("member/halamanMemberPassword", "passwordsiapupdate", loginServices.getLoginById(id));
+        } else {
+//            return new ModelAndView("member/halamanMemberPassword","passwordsiapupdate",loginServices.getLoginById(id));
+            return new ModelAndView("member/halamanMemberDetail", "memberdetail", aktorServices.getAktorById(id));
         }
     }
+
     @RequestMapping(value = "/gantipasswordmember")
-    public String gantipassword(@RequestParam("id")long id,@RequestParam("password")String password){
+    public String gantipassword(@RequestParam("id") long id, @RequestParam("password") String password) {
         Login login = loginServices.getLoginById(id);
         login.setPasswordAktor(password);
         login.setUsernameAktor(login.getUsernameAktor());

@@ -52,5 +52,8 @@ public class LoginServices implements LoginDao {
     public Login findPasswordByid(long id){
         return loginRepository.findPasswordByid(id);
     }
+    public List<Login>cekPassowwrdAndAktor_Id(Long id,String password){
+        return loginRepository.cekPassowwrdAndAktor_Id(id,password);
+    }
 
 }
