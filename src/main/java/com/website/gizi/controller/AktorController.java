@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Controller
@@ -53,10 +54,15 @@ public class AktorController {
     }
 
     @RequestMapping(value = "/memberupdate", method = RequestMethod.POST)
-    public String memberupdate(@ModelAttribute("Aktor") Aktor a, @ModelAttribute("Login") Login l, @RequestParam("id") long id, @RequestParam("idlg") long idlg) {
+    public String memberupdate(@ModelAttribute("Aktor") Aktor a, @RequestParam("id") long id, @RequestParam("idlg") long idlg) {
+        Aktor aktor = aktorServices.getAktorById(id);
         a.setId(id);
-        a.setStatus("Active");
+        a.setCreateBy(aktor.getCreateBy());
+        a.setCreateDate(aktor.getCreateDate());
+        a.setKeterangan(aktor.getKeterangan());
+        a.setStatus(aktor.getStatus());
         a.setUpdateDate(new Date());
+        a.setUpdateBy(aktor.getUpdateBy());
         a.setLogin(loginServices.getLoginById(idlg));
         aktorServices.UpdateAktorMandiri(a);
         return "redirect:member";
@@ -91,12 +97,53 @@ public class AktorController {
     }
 
     @RequestMapping(value = "/gantipasswordmember")
-    public String gantipassword(@RequestParam("id") long id, @RequestParam("password") String password) {
+    public String gantipassword(@ModelAttribute("Login")Login L,@RequestParam("id") long id, @RequestParam("password") String password) {
         Login login = loginServices.getLoginById(id);
-        login.setPasswordAktor(password);
-        login.setUsernameAktor(login.getUsernameAktor());
-        login.setRole(login.getRole());
-        loginServices.SaveOrUpdateLogin(login);
+        L.setId(login.getId());
+        L.setCreateBy(login.getCreateBy());
+        L.setCreateDate(login.getCreateDate());
+        L.setStatus(login.getStatus());
+        L.setKeterangan(login.getKeterangan());
+        L.setUpdateBy(login.getUpdateBy());
+        L.setUpdateDate(new Date());
+        L.setPasswordAktor(password);
+        L.setUsernameAktor(login.getUsernameAktor());
+        L.setRole(login.getRole());
+        loginServices.SaveOrUpdateLogin(L);
+        return "redirect:member";
+    }
+    @RequestMapping(value = "deletememberstatus")
+    public String deleteMemberStatus(@RequestParam("id")long id,@ModelAttribute("Aktor")Aktor a,@ModelAttribute("Login")Login l){
+        Aktor aktor = aktorServices.getAktorById(id);
+        Login login = loginServices.getLoginById(aktor.getLogin().getId());
+        a.setId(id);
+        a.setCreateBy(aktor.getCreateBy());
+        a.setCreateDate(aktor.getCreateDate());
+        a.setKeterangan(aktor.getKeterangan());
+        a.setStatus("Deleted");
+        a.setUpdateDate(new Date());
+        a.setUpdateBy(aktor.getUpdateBy());
+        a.setLogin(loginServices.getLoginById(login.getId()));
+        a.setNamaAwal(aktor.getNamaAwal());
+        a.setNamaAkhir(aktor.getNamaAkhir());
+        a.setNomerSRT(aktor.getNomerSRT());
+        a.setNoHp(aktor.getNoHp());
+        a.setJenjangKarir(aktor.getJenjangKarir());
+        a.setNama_foto(aktor.getNama_foto());
+        a.setAlamat(aktor.getAlamat());
+        a.setPendidikanTerahir(aktor.getPendidikanTerahir());
+
+        l.setId(login.getId());
+        l.setCreateBy(login.getCreateBy());
+        l.setCreateDate(login.getCreateDate());
+        l.setStatus("Deleted");
+        l.setKeterangan(login.getKeterangan());
+        l.setUpdateBy(login.getUpdateBy());
+        l.setUpdateDate(new Date());
+        l.setPasswordAktor(login.getPasswordAktor());
+        l.setUsernameAktor(login.getUsernameAktor());
+        l.setRole(login.getRole());
+        aktorServices.SaveOrUpdateAktor(a,l);
         return "redirect:member";
     }
 }

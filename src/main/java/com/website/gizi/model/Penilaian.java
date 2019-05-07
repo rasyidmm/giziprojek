@@ -20,7 +20,7 @@ public class Penilaian extends Additional implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date tglKegiatan;
+    private String tglPenilaian;
     private Long skorKegiatan;
     private Long volKegiatan;
     private Long nilaiKegiatan;
@@ -69,23 +69,7 @@ public class Penilaian extends Additional implements Serializable {
         return serialVersionUID;
     }
 
-    /**
-     * @return the tglKegiatan
-     */
-    public Date getTglKegiatan() {
-        return tglKegiatan;
-    }
 
-    /**
-     * @param tglKegiatan the tglKegiatan to set
-     */
-    public void setTglKegiatan(Date tglKegiatan) {
-        this.tglKegiatan = tglKegiatan;
-    }
-
-    /**
-     * @return the skorKegiatan
-     */
     public Long getSkorKegiatan() {
         return skorKegiatan;
     }
@@ -174,4 +158,11 @@ public class Penilaian extends Additional implements Serializable {
         this.rekapitulasi = rekapitulasi;
     }
 
+    public String getTglPenilaian() {
+        return tglPenilaian;
+    }
+
+    public void setTglPenilaian(String tglPenilaian) {
+        this.tglPenilaian = tglPenilaian;
+    }
 }

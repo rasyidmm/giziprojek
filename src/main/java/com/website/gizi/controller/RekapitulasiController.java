@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.text.ParseException;
+import java.time.YearMonth;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +32,8 @@ public class RekapitulasiController {
     KegiatanRekapitulasiService kegiatanRekapitulasiService;
     @Autowired
     TargetPenilaianServices targetPenilaianServices;
+    @Autowired
+    PenilaianServices penilaianServices;
 
     @RequestMapping(value = "/rekapitulasi")
     public ModelAndView rekapitulasi() throws ParseException {
@@ -77,7 +81,7 @@ public class RekapitulasiController {
         Aktor a = aktorServices.getAktorById(id);
         WaktuKegiatan wk = waktuKegiatanServices.getWaktuKegiatanById(ids);
         Rekapitulasi rekapitulasi = new Rekapitulasi();
-        rekapitulasi.setNamaRekapitulasi(a.getNamaAkhir() + " " + a.getNamaAkhir() + " " + (wk.getWaktuRekapitulasi()));
+        rekapitulasi.setNamaRekapitulasi(a.getNamaAwal() + " " + a.getNamaAkhir() + " " + (wk.getWaktuRekapitulasi()));
         rekapitulasi.setStatus("Pembuatan");
         rekapitulasi.setCreateDate(new Date());
         rekapitulasi.setAktor(a);
@@ -114,7 +118,7 @@ public class RekapitulasiController {
     }
 
     @RequestMapping(value = "/rekapitulasimemilihkegiatan")
-    public ModelAndView rekapitulasiMemilihKegiatanP(@Param("id") long id, @Param("idr") long idr, @Param("ida") long ida) {
+    public ModelAndView rekapitulasiMemilihKegiatanP(@Param("id") long id, @Param("idr") long idr, @Param("ida") long ida)throws ParseException  {
         ModelAndView mav = new ModelAndView();
         KegiatanRekapitulasi kr = new KegiatanRekapitulasi();
         kr.setStatus("Pembuatan");
@@ -131,6 +135,28 @@ public class RekapitulasiController {
         tr.setNilaiTarget(0L);
         tr.setSkorTarget(0L);
         targetPenilaianServices.SaveOrUpdateTargetPenilaian(tr);
+        Rekapitulasi rekapitulasiku = rekapitulasiServices.getRekapitulasiById(idr);
+        String dfgdf= rekapitulasiku.getWaktuKegiatan().getWaktuRekapitulasi();
+        String[] sdsd= dfgdf.split("-");
+        int bulan = Integer.parseInt(sdsd[0]);
+        int tahun = Integer.parseInt(sdsd[1]);
+        YearMonth yearMonthObject = YearMonth.of(tahun, bulan);
+        int daysInMonth = yearMonthObject.lengthOfMonth();
+        String Date = date("MM-yyyy");
+        for(int z =0 ;z<daysInMonth;z++){
+
+            String day = String.valueOf(z+1);
+            Penilaian penilaian =  new Penilaian();
+            penilaian.setStatus("Menunggu");
+            penilaian.setTglPenilaian(day+"-"+Date);
+            penilaian.setRekapitulasi(rekapitulasiServices.getRekapitulasiById(idr));
+            penilaian.setKegiatan(kegiatanServices.getKegiatanById(id));
+            penilaian.setVolKegiatan(0L);
+            penilaian.setNilaiKegiatan(0L);
+            penilaian.setSkorKegiatan(0L);
+            penilaian.setCreateDate(new Date());
+            penilaianServices.SaveOrUpdatePenilaian(penilaian);
+        }
         mav.addObject("idr", idr);
         mav.addObject("ida", ida);
         mav.setViewName("redirect:rekapitulasikegiatanset");
@@ -141,7 +167,7 @@ public class RekapitulasiController {
     public String prosesMebuatRekapitulasiSelesai(@Param("id") long id) {
 //        try {
         List<KegiatanRekapitulasi> kr = kegiatanRekapitulasiService.findAllByRekapitulasi(id);
-        int sizekr = kegiatanRekapitulasiService.findAllByRekapitulasi(id).size();
+        int sizekr = kr.size();
         for (int i = 0; i < sizekr; i++) {
             long ky = kr.get(i).getId();
             KegiatanRekapitulasi krid = kegiatanRekapitulasiService.getKegiatanRekapitulasiById(ky);
@@ -159,7 +185,7 @@ public class RekapitulasiController {
             targetPenilaianServices.SaveOrUpdateTargetPenilaian(tpid);
         }
         Rekapitulasi rid = rekapitulasiServices.findByIdAndStatus(id);
-        rid.setStatus("Menuggu");
+        rid.setStatus("Menunggu");
         rid.setId(rid.getId());
         rekapitulasiServices.SaveOrUpdateRekapitulasi(rid);
 //        }catch (Exception e){
@@ -168,5 +194,9 @@ public class RekapitulasiController {
         return ("redirect:rekapitulasi");
     }
 
-
+//    @RequestMapping(value = "/detailrekapitulasi")
+//    public ModelAndView detailRekapitulasi(@RequestParam("id")long id){
+//        Rekapitulasi rekapitulasi = rekapitulasiServices.getRekapitulasiById(id);
+//
+//    }
 }

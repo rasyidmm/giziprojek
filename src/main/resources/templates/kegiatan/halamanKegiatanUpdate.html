@@ -52,7 +52,7 @@
                                             <select  name="nama_kelomok_soal" th:value="${kegiatanupdate.aktor.namaAkhir}" class="form-control">
                                                 <option th:each="kelompoksaol:${aktorlist}"
                                                         th:value="${kelompoksaol.id}"
-                                                        th:text="${kelompoksaol.namaAkhir.concat(kelompoksaol.namaAkhir)}"
+                                                        th:text="${kelompoksaol.namaAkhir}"
                                                         th:selected="${kegiatanupdate.aktor.id ==kelompoksaol.id}">
                                                 </option>
                                             </select>

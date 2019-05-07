@@ -43,7 +43,7 @@ public class TargetPenilaianController {
                                              @Param("skorTarget") long skorTarget, @Param("volTarget") long volTarget,
                                              @Param("nilaiTarget") long nilaiTarget) {
         TargetPenilaian tr = targetPenilaianServices.getTargetPenilaianById(id);
-        tr.setStatus("Proses");
+        tr.setStatus("Pembuatan");
         tr.setRekapitulasi(tr.getRekapitulasi());
         tr.setKegiatan(tr.getKegiatan());
         tr.setSkorTarget(skorTarget);

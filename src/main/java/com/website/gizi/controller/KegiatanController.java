@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
@@ -53,9 +50,16 @@ public class KegiatanController {
     }
 
     @RequestMapping(value = "/updatekegiatan", method = RequestMethod.POST)
-    public String updateKegiatanProses(@ModelAttribute("Kegiatan") Kegiatan kegiatan) {
-        kegiatan.setUpdateDate(new Date());
-        kegiatanServices.SaveOrUpdateKegiatan(kegiatan);
+    public String updateKegiatanProses(@ModelAttribute("Kegiatan") Kegiatan k,@RequestParam("id")long id) {
+        Kegiatan kegiatan = kegiatanServices.getKegiatanById(id);
+        k.setId(kegiatan.getId());
+        k.setCreateBy(kegiatan.getCreateBy());
+        k.setCreateDate(kegiatan.getCreateDate());
+        k.setStatus(kegiatan.getStatus());
+        k.setKeterangan(kegiatan.getKeterangan());
+        k.setUpdateBy(kegiatan.getUpdateBy());
+        k.setUpdateDate(new Date());
+        kegiatanServices.SaveOrUpdateKegiatan(k);
         return "redirect:kegiatan";
     }
 
@@ -71,11 +75,19 @@ public class KegiatanController {
     }
 
     @RequestMapping(value = "/kegiatanhapusStatus")
-    public String kegiatanHapusStatus(@RequestParam("id") long id) {
-        Kegiatan kid = kegiatanServices.getKegiatanById(id);
-        kid.setUpdateDate(new Date());
-        kid.setStatus("Delete");
-        kegiatanServices.SaveOrUpdateKegiatan(kid);
+    public String kegiatanHapusStatus(@RequestParam("id") long id, @ModelAttribute("Kegiatan") Kegiatan K) {
+        Kegiatan kegiatan = kegiatanServices.getKegiatanById(id);
+        K.setId(kegiatan.getId());
+        K.setCreateBy(kegiatan.getCreateBy());
+        K.setCreateDate(kegiatan.getCreateDate());
+        K.setStatus("Deleted");
+        K.setKeterangan(kegiatan.getKeterangan());
+        K.setUpdateBy(kegiatan.getUpdateBy());
+        K.setUpdateDate(new Date());
+        K.setNamaKegiatan(kegiatan.getNamaKegiatan());
+        K.setTanggalKegiatan(kegiatan.getTanggalKegiatan());
+        K.setAktor(kegiatan.getAktor());
+        kegiatanServices.SaveOrUpdateKegiatan(K);
         return "redirect:kegiatan";
     }
 }

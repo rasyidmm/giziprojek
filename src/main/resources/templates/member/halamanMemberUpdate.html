@@ -36,23 +36,23 @@
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label>Nama Awal</label>
-                                            <input type="text" class="form-control" th:name="namaAwal" th:value="${memberupdate.namaAwal}" placeholder="Nama Awal">
+                                            <input type="text" class="form-control" th:name="namaAwal" th:value="${memberupdate.namaAwal}" placeholder="Nama Awal" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Nama Akhir</label>
-                                            <input type="text" class="form-control" th:name="namaAkhir" th:value="${memberupdate.namaAkhir}" placeholder="Nama Akhir">
+                                            <input type="text" class="form-control" th:name="namaAkhir" th:value="${memberupdate.namaAkhir}" placeholder="Nama Akhir" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Nomer SRT</label>
-                                            <input type="text" class="form-control" th:name="nomerSRT" th:value="${memberupdate.nomerSRT}" placeholder="Nomer SRT">
+                                            <input type="text" class="form-control" th:name="nomerSRT" th:value="${memberupdate.nomerSRT}" placeholder="Nomer SRT" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Nomer Handphone</label>
-                                            <input type="text" class="form-control" th:name="noHp" th:value="${memberupdate.noHp}" placeholder="Nomer Handphone">
+                                            <input type="text" class="form-control" th:name="noHp" th:value="${memberupdate.noHp}" placeholder="Nomer Handphone" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Pendidikan Terahir</label>
-                                            <input type="text" class="form-control" th:name="pendidikanTerahir" th:value="${memberupdate.pendidikanTerahir}" placeholder="Pendidikan Terahir">
+                                            <input type="text" class="form-control" th:name="pendidikanTerahir" th:value="${memberupdate.pendidikanTerahir}" placeholder="Pendidikan Terahir" required>
                                         </div>
                                     </div>
                                 </div>
@@ -60,11 +60,11 @@
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label>Jenjang Karir</label>
-                                            <input type="text" class="form-control" th:name="jenjangKarir" th:value="${memberupdate.jenjangKarir}" placeholder="Jenjang Karir">
+                                            <input type="text" class="form-control" th:name="jenjangKarir" th:value="${memberupdate.jenjangKarir}" placeholder="Jenjang Karir" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Alamat</label>
-                                            <textarea class="form-control" rows="3" th:name="alamat" th:text="${memberupdate.alamat}" placeholder="Alamat"></textarea>
+                                            <textarea class="form-control" rows="3" th:name="alamat" th:text="${memberupdate.alamat}" placeholder="Alamat" required></textarea>
                                         </div>
                                     </div>
                                 </div>
