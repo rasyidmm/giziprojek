@@ -20,6 +20,9 @@ public class Kegiatan extends Additional implements Serializable {
     private Set<Penilaian> penilaians;
     @JsonIgnore
     @OneToMany(mappedBy = "kegiatan")
+    private Set<Capaian> capaians;
+    @JsonIgnore
+    @OneToMany(mappedBy = "kegiatan")
     private
     List<TargetPenilaian> targetPenilaian;
     @JsonIgnore
@@ -145,5 +148,13 @@ public class Kegiatan extends Additional implements Serializable {
 
     public void setTargetPenilaian(List<TargetPenilaian> targetPenilaian) {
         this.targetPenilaian = targetPenilaian;
+    }
+
+    public Set<Capaian> getCapaians() {
+        return capaians;
+    }
+
+    public void setCapaians(Set<Capaian> capaians) {
+        this.capaians = capaians;
     }
 }

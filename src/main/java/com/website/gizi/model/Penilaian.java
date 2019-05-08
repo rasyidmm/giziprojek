@@ -12,9 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 public class Penilaian extends Additional implements Serializable {
-    @JsonIgnore
-    @OneToOne(mappedBy = "penilaian")
-    private Capaian capaian;
+
 
     private static long serialVersionUID = 1L;
     @Id
@@ -109,23 +107,7 @@ public class Penilaian extends Additional implements Serializable {
         this.nilaiKegiatan = nilaiKegiatan;
     }
 
-    /**
-     * @return the capaian
-     */
-    public Capaian getCapaian() {
-        return capaian;
-    }
 
-    /**
-     * @param capaian the capaian to set
-     */
-    public void setCapaian(Capaian capaian) {
-        this.capaian = capaian;
-    }
-
-    /**
-     * @param aSerialVersionUID the serialVersionUID to set
-     */
     public static void setSerialVersionUID(long aSerialVersionUID) {
         serialVersionUID = aSerialVersionUID;
     }

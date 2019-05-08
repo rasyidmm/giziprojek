@@ -15,6 +15,9 @@ public class Rekapitulasi extends Additional implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "rekapitulasi")
     private List<Penilaian> penilaians;
+    @JsonIgnore
+    @OneToMany(mappedBy = "rekapitulasi")
+    private List<Capaian> capaians;
 
     @JsonIgnore
     @OneToMany(mappedBy = "rekapitulasi")
@@ -146,5 +149,13 @@ public class Rekapitulasi extends Additional implements Serializable {
 
     public void setTargetPenilaians(List<TargetPenilaian> targetPenilaians) {
         this.targetPenilaians = targetPenilaians;
+    }
+
+    public List<Capaian> getCapaians() {
+        return capaians;
+    }
+
+    public void setCapaians(List<Capaian> capaians) {
+        this.capaians = capaians;
     }
 }

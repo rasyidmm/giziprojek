@@ -18,10 +18,13 @@ public class Capaian extends Additional implements Serializable {
     private Long volCapaian;
     private Long nilaiCapaian;
     private Long persentCapaian;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date bulanCapaian;
-    @OneToOne
-    private Penilaian penilaian;
+
+    private String bulanCapaian;
+    @ManyToOne
+    private Kegiatan kegiatan;
+    @ManyToOne
+    private Rekapitulasi rekapitulasi;
+
 
     public Long getId() {
         return id;
@@ -108,30 +111,6 @@ public class Capaian extends Additional implements Serializable {
     /**
      * @return the bulanCapaian
      */
-    public Date getBulanCapaian() {
-        return bulanCapaian;
-    }
-
-    /**
-     * @param bulanCapaian the bulanCapaian to set
-     */
-    public void setBulanCapaian(Date bulanCapaian) {
-        this.bulanCapaian = bulanCapaian;
-    }
-
-    /**
-     * @return the penilaian
-     */
-    public Penilaian getPenilaian() {
-        return penilaian;
-    }
-
-    /**
-     * @param penilaian the penilaian to set
-     */
-    public void setPenilaian(Penilaian penilaian) {
-        this.penilaian = penilaian;
-    }
 
     /**
      * @param aSerialVersionUID the serialVersionUID to set
@@ -140,4 +119,27 @@ public class Capaian extends Additional implements Serializable {
         serialVersionUID = aSerialVersionUID;
     }
 
+    public Kegiatan getKegiatan() {
+        return kegiatan;
+    }
+
+    public void setKegiatan(Kegiatan kegiatan) {
+        this.kegiatan = kegiatan;
+    }
+
+    public Rekapitulasi getRekapitulasi() {
+        return rekapitulasi;
+    }
+
+    public void setRekapitulasi(Rekapitulasi rekapitulasi) {
+        this.rekapitulasi = rekapitulasi;
+    }
+
+    public String getBulanCapaian(String waktuRekapitulasi) {
+        return bulanCapaian;
+    }
+
+    public void setBulanCapaian(String bulanCapaian) {
+        this.bulanCapaian = bulanCapaian;
+    }
 }

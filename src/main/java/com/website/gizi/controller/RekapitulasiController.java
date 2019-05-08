@@ -34,6 +34,8 @@ public class RekapitulasiController {
     TargetPenilaianServices targetPenilaianServices;
     @Autowired
     PenilaianServices penilaianServices;
+    @Autowired
+    CapaianServices capaianServices;
 
     @RequestMapping(value = "/rekapitulasi")
     public ModelAndView rekapitulasi() throws ParseException {
@@ -118,7 +120,8 @@ public class RekapitulasiController {
     }
 
     @RequestMapping(value = "/rekapitulasimemilihkegiatan")
-    public ModelAndView rekapitulasiMemilihKegiatanP(@Param("id") long id, @Param("idr") long idr, @Param("ida") long ida)throws ParseException  {
+    public ModelAndView rekapitulasiMemilihKegiatanP(@ModelAttribute("Capaian") Capaian capaian, @Param("id") long id, @Param("idr") long idr, @Param("ida") long ida) throws ParseException {
+        Rekapitulasi rekapitulasiini = rekapitulasiServices.getRekapitulasiById(idr);
         ModelAndView mav = new ModelAndView();
         KegiatanRekapitulasi kr = new KegiatanRekapitulasi();
         kr.setStatus("Pembuatan");
@@ -135,20 +138,29 @@ public class RekapitulasiController {
         tr.setNilaiTarget(0L);
         tr.setSkorTarget(0L);
         targetPenilaianServices.SaveOrUpdateTargetPenilaian(tr);
+        Capaian c = new Capaian();
+        c.setBulanCapaian(rekapitulasiini.getWaktuKegiatan().getWaktuRekapitulasi());
+        c.setCreateDate(new Date());
+        c.setStatus("Pembuatan");
+        c.setNilaiCapaian(0L);
+        c.setPersentCapaian(0L);
+        c.setVolCapaian(0L);
+        c.setKegiatan(kegiatanServices.getKegiatanById(id));
+        c.setRekapitulasi(rekapitulasiServices.getRekapitulasiById(idr));
         Rekapitulasi rekapitulasiku = rekapitulasiServices.getRekapitulasiById(idr);
-        String dfgdf= rekapitulasiku.getWaktuKegiatan().getWaktuRekapitulasi();
-        String[] sdsd= dfgdf.split("-");
+        capaianServices.SaveOrUpdateCapaian(c);
+        String dfgdf = rekapitulasiku.getWaktuKegiatan().getWaktuRekapitulasi();
+        String[] sdsd = dfgdf.split("-");
         int bulan = Integer.parseInt(sdsd[0]);
         int tahun = Integer.parseInt(sdsd[1]);
         YearMonth yearMonthObject = YearMonth.of(tahun, bulan);
         int daysInMonth = yearMonthObject.lengthOfMonth();
-        String Date = date("MM-yyyy");
-        for(int z =0 ;z<daysInMonth;z++){
+        for (int z = 0; z < daysInMonth; z++) {
 
-            String day = String.valueOf(z+1);
-            Penilaian penilaian =  new Penilaian();
+            String day = String.valueOf(z + 1);
+            Penilaian penilaian = new Penilaian();
             penilaian.setStatus("Menunggu");
-            penilaian.setTglPenilaian(day+"-"+Date);
+            penilaian.setTglPenilaian(day + "-" + dfgdf);
             penilaian.setRekapitulasi(rekapitulasiServices.getRekapitulasiById(idr));
             penilaian.setKegiatan(kegiatanServices.getKegiatanById(id));
             penilaian.setVolKegiatan(0L);
@@ -171,6 +183,7 @@ public class RekapitulasiController {
         for (int i = 0; i < sizekr; i++) {
             long ky = kr.get(i).getId();
             KegiatanRekapitulasi krid = kegiatanRekapitulasiService.getKegiatanRekapitulasiById(ky);
+
             krid.setStatus("Menunggu");
             krid.setId(krid.getId());
             kegiatanRekapitulasiService.SaveOrUpdateKegiatanRekapitulasi(krid);
@@ -184,6 +197,11 @@ public class RekapitulasiController {
             tpid.setId(tpid.getId());
             targetPenilaianServices.SaveOrUpdateTargetPenilaian(tpid);
         }
+        Capaian capaian = capaianServices.findByRekapitulasiId(id);
+        capaian.setStatus("Menunggu");
+        capaian.setCreateDate(new Date());
+        capaian.setId(capaian.getId());
+        capaianServices.SaveOrUpdateCapaian(capaian);
         Rekapitulasi rid = rekapitulasiServices.findByIdAndStatus(id);
         rid.setStatus("Menunggu");
         rid.setId(rid.getId());
