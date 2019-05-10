@@ -42,13 +42,13 @@ public class KegiatanServices implements KegiatanDao {
         kegiatanRepository.delete(a);
     }
 
-    public List<Kegiatan> findKegiatanByRekapitulasiID(long id) {
-        return kegiatanRepository.findKegiatanByRekapitulasiID(id);
+    public List<Kegiatan> findKegiatanByRekapitulasiIdAndStatusActive(long id) {
+        return kegiatanRepository.findKegiatanByRekapitulasiIdAndStatusActive(id);
     }
 
 
-    public List<Kegiatan> findKegiatanNONByRekapitulasiID(String waktu, long ida) {
-        return kegiatanRepository.findKegiatanNONByRekapitulasiID(waktu, ida);
+    public List<Kegiatan> findKegiatanByAktorAndTanggalKegiatanAndRekapitulasiNULL(String waktu, long ida) {
+        return kegiatanRepository.findKegiatanByAktorAndTanggalKegiatanAndRekapitulasiNULL(waktu, ida);
     }
 
     ;
@@ -65,6 +65,9 @@ public class KegiatanServices implements KegiatanDao {
 
     public List<Kegiatan> findKegiatanByStatusDeleted() {
         return kegiatanRepository.findKegiatanByStatusDeleted();
+    }
+    public List<Kegiatan>findAllByKegiatanRekapitulasi(long id){
+        return kegiatanRepository.findAllByKegiatanRekapitulasi(id);
     }
 
 

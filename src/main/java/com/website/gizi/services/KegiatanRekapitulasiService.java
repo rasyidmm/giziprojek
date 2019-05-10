@@ -42,7 +42,7 @@ public class KegiatanRekapitulasiService implements KegiatanRekapitulasiDao {
         kegiatanRekapitulasiRepository.delete(a);
     }
 
-    public List<KegiatanRekapitulasi> findAllByRekapitulasi(long id) {
-        return kegiatanRekapitulasiRepository.findAllByRekapitulasi(id);
+    public List<KegiatanRekapitulasi> findAllByRekapitulasiAndStatusPembuatan(long id) {
+        return kegiatanRekapitulasiRepository.findAllByRekapitulasiAndStatusPembuatan(id);
     }
 }

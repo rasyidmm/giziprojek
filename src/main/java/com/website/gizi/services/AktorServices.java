@@ -59,19 +59,19 @@ public class AktorServices implements AktorDao {
         aktorRepository.delete(a);
     }
 
-    public List<Aktor> findAktorByWaktu(long id) {
-        return aktorRepository.findAktorByWaktu(id);
+    public List<Aktor> findAktorByWaktuAndStatusActive(long id) {
+        return aktorRepository.findAktorByWaktuAndStatusActive(id);
     }
 
     ;
 
-    public List<Aktor> findAllByDeleted() {
-        return aktorRepository.findAllByDeleted();
+    public List<Aktor> findAllByStatusDeleted() {
+        return aktorRepository.findAllByStatusDeleted();
     }
 
     ;
 
-    public List<Aktor> findAllByActive() {
-        return aktorRepository.findAllByActive();
+    public List<Aktor> findAllByStatusActive() {
+        return aktorRepository.findAllByStatusActive();
     }
 }

@@ -60,8 +60,8 @@ public class TargetPenilaianServices implements TargetPenilaianDao {
 
     ;
 
-    public List<TargetPenilaian> findAllByRekapitulasi(long id) {
-        return targetPenilaianRepository.findAllByRekapitulasi(id);
+    public List<TargetPenilaian>findAllByRekapitulasiAndStatusPembuatan(long id) {
+        return targetPenilaianRepository.findAllByRekapitulasiAndStatusPembuatan(id);
     }
 
     ;

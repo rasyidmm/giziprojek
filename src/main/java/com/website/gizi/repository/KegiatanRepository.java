@@ -13,10 +13,10 @@ import java.util.List;
 @Repository
 public interface KegiatanRepository extends JpaRepository<Kegiatan, Long> {
     @Query(value = "SELECT * from kegiatan a left join kegiatan_rekapitulasi b on a.id = b.kegiatan_id where b.rekapitulasi_id =:id AND a.status = 'Active'", nativeQuery = true)
-    public List<Kegiatan> findKegiatanByRekapitulasiID(@Param("id") long id);
+    public List<Kegiatan> findKegiatanByRekapitulasiIdAndStatusActive(@Param("id") long id);
 
     @Query(value = "SELECT * from kegiatan a left join kegiatan_rekapitulasi b on a.id = b.kegiatan_id where a.aktor_id =:ida AND a.tanggal_kegiatan =:waktu and b.rekapitulasi_id is null AND  a.status = 'Active'", nativeQuery = true)
-    public List<Kegiatan> findKegiatanNONByRekapitulasiID(@Param("waktu") String waktu, @Param("ida") long ida);
+    public List<Kegiatan> findKegiatanByAktorAndTanggalKegiatanAndRekapitulasiNULL(@Param("waktu") String waktu, @Param("ida") long ida);
 
     @Query(value = "SELECT * FROM kegiatan a LEFT JOIN target_penilaian b on a.id = b.kegiatan_id WHERE b.rekapitulasi_id !=:idr and b.nilai_target = null or b.skor_target = null or b.vol_target = null AND  a.status = 'Active'", nativeQuery = true)
     public List<Kegiatan> findKegiatanNONByTargetPenilaian(@Param("idr") long idr);
@@ -26,4 +26,7 @@ public interface KegiatanRepository extends JpaRepository<Kegiatan, Long> {
 
     @Query(value = "select * from kegiatan d where d.status = 'Deleted'", nativeQuery = true)
     public List<Kegiatan> findKegiatanByStatusDeleted();
+
+    @Query(value = "select * from kegiatan a left join kegiatan_rekapitulasi b on a.id = b.kegiatan_id where b.rekapitulasi_id =:id",nativeQuery = true)
+    public List<Kegiatan>findAllByKegiatanRekapitulasi(@Param("id")long id);
 }

@@ -25,7 +25,7 @@ public class AktorController {
 
     @RequestMapping(value = "/member")
     public ModelAndView halamanMember() {
-        return new ModelAndView("member/halamanMember", "memberlist", aktorServices.findAllByActive());
+        return new ModelAndView("member/halamanMember", "memberlist", aktorServices.findAllByStatusActive());
     }
 
     @RequestMapping(value = "/membertambah")

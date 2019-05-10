@@ -41,4 +41,8 @@ public class PenilaianServices implements PenilaianDao {
     public void deletePenilaian(Penilaian a) {
         penilaianRepository.delete(a);
     }
+
+    public List<Penilaian>findAllByRekapitulasiId(long id){
+        return penilaianRepository.findAllByRekapitulasiId(id);
+    }
 }
