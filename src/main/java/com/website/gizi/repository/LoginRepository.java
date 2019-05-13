@@ -20,5 +20,5 @@ public interface LoginRepository extends JpaRepository<Login, Long> {
     public Login findPasswordByid(@Param("id") long id);
 
     @Query(value = "select * from login b where b.id =:id and b.password_aktor =:password", nativeQuery = true)
-    public List<Login> cekPassowwrdAndAktor_Id(@Param("id") Long id, @Param("password") String password);
+    public List<Login> findAllByAktorAndPasswordAktor(@Param("id") Long id, @Param("password") String password);
 }

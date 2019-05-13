@@ -37,6 +37,6 @@ public interface RekapitulasiRepository extends JpaRepository<Rekapitulasi, Long
     @Query(value = "select * from rekapitulasi a join waktu_kegiatan b on a.waktu_kegiatan_id = b.id where a.status='Menunggu' and b.waktu_rekapitulasi =:waktu", nativeQuery = true)
     public List<Rekapitulasi> findByStatusMenunggAndDateSameNow(@Param("waktu") String waktu);
 
-    @Query(value = "select * from rekapitulasi a join waktu_kegiatan b on a.waktu_kegiatan_id = b.id where a.status='Proses' and b.waktu_rekapitulasi =:waktu", nativeQuery = true)
+    @Query(value = "select * from rekapitulasi a join waktu_kegiatan b on a.waktu_kegiatan_id = b.id where a.status='Proses' and b.waktu_rekapitulasi <:waktu", nativeQuery = true)
     public List<Rekapitulasi> findByStatusProsesAndDateKurangNow(@Param("waktu") String waktu);
 }

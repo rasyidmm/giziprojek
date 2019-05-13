@@ -86,7 +86,7 @@ public class AktorController {
 
     @RequestMapping(value = "/cekpassword")
     public ModelAndView cekpassword(@RequestParam("id") long id, @RequestParam("password") String password) {
-        int size = loginServices.cekPassowwrdAndAktor_Id(id, password).size();
+        int size = loginServices.findAllByAktorAndPasswordAktor(id, password).size();
         if (size > 0) {
 //            return new ModelAndView("member/halamanMemberDetail","memberdetail",aktorServices.getAktorById(id));
             return new ModelAndView("member/halamanMemberPassword", "passwordsiapupdate", loginServices.getLoginById(id));

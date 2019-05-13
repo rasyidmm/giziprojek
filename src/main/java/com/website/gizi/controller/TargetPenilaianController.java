@@ -22,8 +22,8 @@ public class TargetPenilaianController {
     @RequestMapping(value = "/rekapitulasikegiatanterpilih")
     public ModelAndView rekapitulasiKegiatanTerpilih(@Param("idr") long idr) {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("targetNilaiNONnilai", targetPenilaianServices.findAllByKegiatanAndRekapitulasiWithinNULL(idr));
-        mav.addObject("targetNilaiINnilai", targetPenilaianServices.findAllByKegiatanAndRekapitulasiWithinNOTNULL(idr));
+        mav.addObject("targetNilaiNONnilai", targetPenilaianServices.findAllByRekapitulasiAndVolNilaiSkorTargetIsZero(idr));
+        mav.addObject("targetNilaiINnilai", targetPenilaianServices.findAllByRekapitulasiAndVolNilaiSkorTargetNotZero(idr));
         mav.addObject("rekapitulasiterpilih", rekapitulasiServices.getRekapitulasiById(idr));
         mav.setViewName("targetpenilaian/halamanPenilaianKegiatanTerpilih");
         return mav;
