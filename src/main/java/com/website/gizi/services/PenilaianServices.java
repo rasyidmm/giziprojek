@@ -45,4 +45,7 @@ public class PenilaianServices implements PenilaianDao {
     public List<Penilaian>findAllByRekapitulasiId(long id){
         return penilaianRepository.findAllByRekapitulasiId(id);
     }
+    public List<Penilaian>findAllByKegiatanId(long id){
+        return penilaianRepository.findAllByKegiatanId(id);
+    }
 }

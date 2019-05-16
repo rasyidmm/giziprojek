@@ -197,11 +197,17 @@ public class RekapitulasiController {
             tpid.setId(tpid.getId());
             targetPenilaianServices.SaveOrUpdateTargetPenilaian(tpid);
         }
-        Capaian capaian = capaianServices.findByRekapitulasiId(id);
-        capaian.setStatus("Menunggu");
-        capaian.setCreateDate(new Date());
-        capaian.setId(capaian.getId());
-        capaianServices.SaveOrUpdateCapaian(capaian);
+        List <Capaian> cp = capaianServices.findByRekapitulasiId(id);
+        int sizecp = capaianServices.findByRekapitulasiId(id).size();
+        for (int c =0;c<sizecp;c++){
+           long cl = cp.get(c).getId();
+           Capaian capaian = capaianServices.getCapaianById(cl);
+           capaian.setStatus("Menunggu");
+           capaian.setCreateDate(new Date());
+           capaian.setId(capaian.getId());
+           capaianServices.SaveOrUpdateCapaian(capaian);
+
+        }
         Rekapitulasi rid = rekapitulasiServices.findByIdAndStatus(id);
         rid.setStatus("Menunggu");
         rid.setId(rid.getId());
@@ -212,11 +218,13 @@ public class RekapitulasiController {
         return ("redirect:rekapitulasi");
     }
 
-    @RequestMapping(value = "/detailrekapitulasi")
+    @RequestMapping(value = "/rekapitulasidetail")
     public ModelAndView detailRekapitulasi(@RequestParam("id")long id){
         Rekapitulasi rekapitulasi = rekapitulasiServices.getRekapitulasiById(id);
         ModelAndView mav = new ModelAndView();
-        mav.addObject()
-
+        mav.addObject("kegiatanByRekapitulasi",kegiatanServices.findAllByKegiatanRekapitulasi(id));
+        mav.setViewName("rekapitulasi/halamanRekapitulasiDetail");
+        return mav;
     }
+
 }

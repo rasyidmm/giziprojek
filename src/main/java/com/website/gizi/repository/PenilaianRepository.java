@@ -12,5 +12,8 @@ import java.util.List;
 public interface PenilaianRepository extends JpaRepository<Penilaian, Long> {
     @Query(value = "select * from penilaian b where b.rekapitulasi_id =:id",nativeQuery = true)
     public List<Penilaian>findAllByRekapitulasiId(@Param("id")long id);
+    @Query(value = "select * from penilaian b where b.kegiatan_id =id",nativeQuery = true)
+    public List<Penilaian>findAllByKegiatanId(@Param("id")long id);
+
 
 }

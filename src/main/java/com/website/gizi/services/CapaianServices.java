@@ -42,7 +42,10 @@ public class CapaianServices implements CapaianDao {
     public void deleteCapaian(Capaian a) {
         capaianRepository.delete(a);
     }
-    public Capaian findByRekapitulasiId(long id){
+    public List<Capaian> findByRekapitulasiId(long id){
         return capaianRepository.findByRekapitulasiId(id);
+    }
+    public List<Capaian> findByKegiatanId(long id){
+        return capaianRepository.findByKegiatanId(id);
     }
 }
